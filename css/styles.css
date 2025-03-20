@@ -9,6 +9,7 @@
     --link-hover-color : #4ace22;
     --login-border-color : #00913c;
     --login-font-color : #00913c;
+    --scroll-bar-color : #00913c;
 }
 
 .nav-button {
@@ -90,8 +91,24 @@ body {
     height: 100vh;
     width: 100vw;
     background-color: var(--background-color);
-    margin: 0rem;
-    overflow: hidden;
+    margin: 0;
+    overflow-y: scroll; /* Enable vertical scrolling */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Style the scrollbar */
+body::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+    background: var(--background-color); /* Track color */
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: var(--scroll-bar-color); /* Thumb color */
+    border-radius: 6px; /* Rounded edges */
+    border: 3px solid var(--background-color); /* Space around the thumb */
 }
 
 #image-track {
@@ -156,9 +173,51 @@ body {
     width: 100%;
 }
 
-#avanuedocuments > .document {
-    width: 40vmin;
-    height: 56vmin;
+.avanuedocuments {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    gap: 2vmin; /* Add spacing between items */
+    align-items: center; /* Center items horizontally */
+}
+
+.avanuedocuments > .document img {
+    width: 60vmin;
+    height: 15vmin;
     object-fit: cover;
     object-position: center;
+}
+
+.avanuedocuments{
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+}
+
+.avanuedocuments .document {
+    transition: .5s;
+    filter: brightness(0.4);
+}
+
+.avanuedocuments .document:hover {
+    filter: brightness(1.2);
+    transform: translateZ(20px);
+}
+
+.avanuedocuments .document:hover + *{
+    filter : brightness(0.8);
+    transform: translateZ(10px) rotateX(-10deg);
+}
+
+.avanuedocuments .document:hover + * + *{
+    filter : brightness(0.6);
+    transform: translateZ(5px) rotateX(-5deg);
+}
+
+.avanuedocuments .document:has(+ *:hover){
+    filter : brightness(0.8);
+    transform: translateZ(10px) rotateX(10deg);
+}
+
+.avanuedocuments .document:has(+ * + *:hover){
+    filter : brightness(0.6);
+    transform: translateZ(5px) rotateX(5deg);
 }
