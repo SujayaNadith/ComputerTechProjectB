@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
-    <header>
-        <nav>
-            <ul style="list-style: none; display: flex; justify-content: center; gap: 15px; padding: 0;">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about-us.html">About Us</a></li>
-                <li><a href="enrolments.html">Enrolments</a></li>
-                <li><a href="curriculum.html">Curriculum</a></li>
-                <li><a href="contact-us.html">Contact Us</a></li>
-                <li><a href="events.html">Events</a></li>
+<body style="background-color: var(--background-color); color: var(--text-color);">
+    <header style="background-color: var(--header-background); color: var(--header-text);">
+        <nav style="background-color: var(--nav-background); padding: 10px;">
+            <ul style="list-style: none; display: flex; justify-content: center; gap: 5px; padding: 0; margin: 0; flex-wrap: nowrap;">
+                <li><button class="nav-button" onclick="location.href='index.html'"><p data-hover="Home">Home</p></button></li>
+                <li><button class="nav-button" onclick="location.href='about-us.html'"><p data-hover="About Us">About Us</p></button></li>
+                <li><button class="nav-button" onclick="location.href='enrolments.html'"><p data-hover="Enrolments">Enrolments</p></button></li>
+                <li><button class="nav-button" onclick="location.href='curriculum.html'"><p data-hover="Curriculum">Curriculum</p></button></li>
+                <li><button class="nav-button" onclick="location.href='contact-us.html'"><p data-hover="Contact Us">Contact Us</p></button></li>
+                <li><button class="nav-button" onclick="location.href='events.html'"><p data-hover="Events">Events</p></button></li>
             </ul>
         </nav>
     </header>
@@ -32,7 +33,7 @@
         </iframe>
     </main>
 
-    <footer style="text-align: center;">
+    <footer style="background-color: var(--footer-background); color: var(--footer-text); text-align: center;">
         <p>The Avenue School</p>
         <p>13-15 The Avenue, Ferntree Gully</p>
         <p>Contact via MDLC</p>

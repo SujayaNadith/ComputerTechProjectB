@@ -1,0 +1,84 @@
+:root{
+    --base-color : #00913c; 
+    --base-variant-color : #015022;
+    --text-color : #a3b8ac;
+    --secondary-text-color : #f5f5f5;
+    --background-color : #244924;
+    --accent-color: #851275;
+    --link-color : #10b16e;
+}
+
+.nav-button {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    --primary-color: #111;
+    --hovered-color: #c84747;
+    position: relative;
+    display: flex;
+    font-weight: 600;
+    font-size: 14px; /* Adjusted for navigation bar */
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.nav-button p {
+    margin: 0;
+    position: relative;
+    font-size: 14px; /* Adjusted for navigation bar */
+    color: var(--primary-color);
+}
+
+.nav-button::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    left: 0;
+    bottom: -5px; /* Adjusted for navigation bar */
+    background: var(--hovered-color);
+    height: 2px;
+    transition: 0.3s ease-out;
+}
+
+.nav-button p::before {
+    position: absolute;
+    content: attr(data-hover); /* Use the button text dynamically */
+    width: 0%;
+    inset: 0;
+    color: var(--hovered-color);
+    overflow: hidden;
+    transition: 0.3s ease-out;
+}
+
+.nav-button:hover::after {
+    width: 100%;
+}
+
+.nav-button:hover p::before {
+    width: 100%;
+}
+
+.nav-button:hover svg {
+    transform: translateX(4px);
+    color: var(--hovered-color);
+}
+
+.nav-button svg {
+    color: var(--primary-color);
+    transition: 0.2s;
+    position: relative;
+    width: 15px;
+    transition-delay: 0.2s;
+}
+
+/* Adjust the spacing between buttons in the navigation bar */
+nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 120px; /* Tripled the previous gap for more spacing */
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
