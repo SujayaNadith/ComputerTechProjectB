@@ -7,6 +7,8 @@
     --accent-color: #851275;
     --link-color : #ffffff;
     --link-hover-color : #4ace22;
+    --login-border-color : #00913c;
+    --login-font-color : #00913c;
 }
 
 .nav-button {
@@ -152,4 +154,11 @@ body {
 
 .footer-link:hover::before {
     width: 100%;
+}
+
+#avanuedocuments > .document {
+    width: 40vmin;
+    height: 56vmin;
+    object-fit: cover;
+    object-position: center;
 }
