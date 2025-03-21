@@ -111,16 +111,24 @@ body::-webkit-scrollbar-thumb {
     border: 3px solid var(--background-color); /* Space around the thumb */
 }
 
+.image-track-container {
+    position: relative;
+    margin: 20px auto;
+    max-width: 100%;
+    overflow: hidden;
+    height: 60vh; /* Set a height for the container */
+}
+
+/* Adjust the positioning of the #image-track */
 #image-track {
     display: flex;
     gap: 4vmin;
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(0%, -50%); 
-    user-select: none; 
-  }
-  
+    transform: translate(-50%, -50%); /* Center it horizontally and vertically */
+    user-select: none;
+}
   #image-track > .image {
     width: 40vmin;
     height: 56vmin;
