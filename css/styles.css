@@ -136,6 +136,7 @@ body::-webkit-scrollbar-thumb {
     object-position: 100% center;
   }
 
+
 .footer-link {
     padding: 0;
     margin: 0;
@@ -184,13 +185,13 @@ body::-webkit-scrollbar-thumb {
 .avanuedocuments {
     display: flex;
     flex-direction: column; /* Stack items vertically */
-    gap: 2vmin; /* Add spacing between items */
+    gap: 7vmin; /* Add spacing between items */
     align-items: center; /* Center items horizontally */
 }
 
 .avanuedocuments > .document img {
-    width: 60vmin;
-    height: 15vmin;
+    width: 64vmin;
+    height: 36vmin;
     object-fit: cover;
     object-position: center;
 }
@@ -201,22 +202,22 @@ body::-webkit-scrollbar-thumb {
 }
 
 .avanuedocuments .document {
-    transition: .5s;
-    filter: brightness(0.4);
+    transition: .3s;
+    filter: brightness(0.3);
 }
 
 .avanuedocuments .document:hover {
-    filter: brightness(1.2);
+    filter: brightness(1);
     transform: translateZ(20px);
 }
 
 .avanuedocuments .document:hover + *{
-    filter : brightness(0.8);
+    filter : brightness(0.7);
     transform: translateZ(10px) rotateX(-10deg);
 }
 
 .avanuedocuments .document:hover + * + *{
-    filter : brightness(0.6);
+    filter : brightness(0.5);
     transform: translateZ(5px) rotateX(-5deg);
 }
 
