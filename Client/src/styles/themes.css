@@ -1,0 +1,57 @@
+:root {
+    /* Primary Brand Colors */
+    --pale-sage: #cbded3;
+    --medium-sage: #a5c1b3;
+    --dark-sage: #2c533f;
+    --bottle-green: #1a351a;
+    --stone-beige: #e2dfda;
+  
+    /* Accent Colors */
+    --pale-purple: #d8c8e2;
+    --medium-purple: #a68fbf;
+    --dark-purple: #4d316c;
+    --gold-dust: #d2c49e;
+  
+    /* Core Text / UI */
+    --charcoal: #2b333d;
+    --light-bg: #f8f9fa;
+    --off-white: #f1f1f1;
+}
+
+.btn-primary {
+    background-color: var(--dark-purple) !important;
+    border-color: var(--dark-purple) !important;
+    color: #fff !important;
+}
+  
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #3a2556 !important;
+    border-color: #3a2556 !important;
+}
+
+.btn-secondary {
+    background-color: var(--medium-sage) !important;
+    border-color: var(--medium-sage) !important;
+    color: #2b333d !important;
+}
+
+.logo-animated {
+    transition: transform 0.3s ease;
+}
+  
+.logo-animated:hover {
+    transform: scale(1.08);
+}
+  
+.section-pale-sage {
+    background-color: var(--pale-sage);
+}
+  
+.section-stone {
+    background-color: var(--stone-beige);
+}
+  
+  
+  
+  
