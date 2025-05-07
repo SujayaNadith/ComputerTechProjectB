@@ -1,0 +1,46 @@
+# 🚀 Sprint 2 - Task Allocation & Development Plan
+
+This sprint focuses on implementing the backend functionality of The Avenue School website, integrating the front-end with API routes, and applying the official branding and UI polish based on the client's brand guidelines.
+
+---
+
+## 📌 Focus Areas
+
+- ✅ Backend development using Node.js and Express
+- ✅ Form integration with backend (Register, Login, Contact Us, Enrolments)
+- ✅ Events page API connection + admin form
+- ✅ Careers page development and navigation integration
+- ✅ Full UI/UX enhancement and brand compliance (The Avenue School guidelines)
+
+---
+
+## 👥 Team Member Task Allocation
+
+| Team Member | Primary Task | Secondary/Support Task |
+|-------------|--------------|-------------------------|
+| **Dindi** | Set up Node.js backend with Express routing | Draft backend API documentation |
+| **Jude** | Create Register/Login API endpoints | Setup user schema/model for future auth |
+| **Sanju** | Create Add/Edit/Delete event API endpoints | Test integration with dynamic Events feed |
+| **JD** | Connect Enrolments and Contact Us forms to backend | Add success/error alerts for user feedback |
+| **Jay** | Build dynamic Events feed (fetch from backend) | Create admin event creation form (frontend) |
+| **Sithija** | Develop and style the **Careers page**, move link to Header | Apply branding, accessibility, and UI improvements |
+
+---
+
+## 🎨 UI & Branding Enhancements (All Frontend Members)
+
+- Apply official brand palette (Primary: Sage Greens, Secondary: Purples)
+- Use Montserrat fonts with correct weights (ExtraBold, Medium, etc.)
+- Introduce fern leaf motif as subtle background or divider
+- Use `Charcoal (#2b333d)` for text instead of black
+- Add icons (`react-icons`) to forms, event listings, and headers
+- Improve spacing using `my-5`, section dividers, and `bg-light` for alternating sections
+- Ensure responsive design across all breakpoints (mobile/tablet/desktop)
+
+---
+
+## 🧠 Additional Notes
+
+- Form submission endpoints will connect to the school's support email
+- Placeholder images will be replaced with real photos once available
+- Certain interactive features (e.g., file uploads, admin login) are planned for future sprints
