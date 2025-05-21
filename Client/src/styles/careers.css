@@ -1,0 +1,35 @@
+body, .careers-page {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.text-brand {
+  color: #4d316c; /* Dark Purple */
+}
+
+.btn-brand {
+  background-color: #4d316c;
+  color: #fff;
+  border: none;
+}
+
+.btn-brand:hover {
+  background-color: #3a2553;
+}
+
+.btn-outline-brand {
+  border: 2px solid #4d316c;
+  color: #4d316c;
+}
+
+.btn-outline-brand:hover {
+  background-color: #4d316c;
+  color: #fff;
+}
+
+.table-brand {
+  background-color: #5E7C6C; /* Sage Green */
+}
+
+.blockquote {
+  font-style: italic;
+}

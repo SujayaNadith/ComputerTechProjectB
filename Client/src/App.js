@@ -12,6 +12,7 @@ import Curriculum from './components/Curriculum';
 import Enrolments from './components/Enrolments';
 import ContactUs from './components/ContactUs';
 import Documents from './components/Documents';
+import Careers from './components/Careers';
 
 import PrivateRoute from './utils/PrivateRoute';
 
@@ -33,6 +34,7 @@ function App() {
         <Route path="/events" element={<PrivateRoute><Events /></PrivateRoute>} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/careers" element={<Careers />} />
 
         <Route path="/documents" element={<Documents />} />
       </Routes>
