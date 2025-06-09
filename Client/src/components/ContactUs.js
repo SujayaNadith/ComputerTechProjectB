@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebookF, FaLinkedin} from 'react-icons/fa';
 import axios from 'axios';
 
 const ContactUs = () => {
@@ -143,15 +143,16 @@ const ContactUs = () => {
                 <div className="card-body d-flex flex-column justify-content-between">
                   <div>
                     <h5 className="mb-3" style={{ color: '#2b333d' }}>School Address</h5>
-                    <p className="mb-1"><FaMapMarkerAlt className="me-2 text-primary" />13-15 The Avenue, Ferntree Gully VIC 3155</p>
-                    <p className="mb-1"><FaPhone className="me-2 text-primary" />+61 3 1234 5678</p>
-                    <p className="mb-3"><FaEnvelope className="me-2 text-primary" />info@avenueschool.edu.au</p>
+                    <p className="mb-1"><FaMapMarkerAlt className="me-2 text-primary" />13-15 The Avenue, Ferntree Gully VIC 3156</p>
+                    <p className="mb-1"><FaPhone className="me-2 text-primary" />03 9758 7859</p>
+                    <p className="mb-3"><FaEnvelope className="me-2 text-primary" />office@theavenueschool.vic.edu.au</p>
 
                     <h6 style={{ color: '#2b333d' }}>Follow Us</h6>
                     <div className="d-flex gap-3">
-                      <a href="#"><FaFacebookF className="fs-4 text-primary" /></a>
-                      <a href="#"><FaInstagram className="fs-4 text-danger" /></a>
-                      <a href="#"><FaTwitter className="fs-4 text-info" /></a>
+                      <a href="https://www.facebook.com/profile.php?id=61576600509884"><FaFacebookF className="fs-4 text-primary" /></a>
+                      <a href="https://www.linkedin.com/company/105613790/" target="_blank" rel="noopener noreferrer">
+                        <FaLinkedin className="fs-4 text-primary" />
+                      </a>
                     </div>
                   </div>
 

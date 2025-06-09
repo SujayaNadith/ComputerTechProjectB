@@ -12,15 +12,15 @@ const Footer = () => {
             <h5 className="fw-bold mb-3">Contact Us</h5>
             <p className="mb-2">
               <FaMapMarkerAlt className="me-2 text-primary" />
-              13-15 The Avenue, Ferntree Gully VIC 3155
+              13-15 The Avenue, Ferntree Gully VIC 3156
             </p>
             <p className="mb-2">
               <FaPhone className="me-2 text-primary" />
-              +61 3 1234 5678
+              03 9758 7859
             </p>
             <p className="mb-0">
               <FaEnvelope className="me-2 text-primary" />
-              info@avenueschool.edu.au
+              office@theavenueschool.vic.edu.au
             </p>
           </div>
 

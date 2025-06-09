@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { FaBullseye, FaEye } from 'react-icons/fa';
+import Principal from '../assets/images/staff/jarrid.jpg';
 
 const About = () => {
   return (
@@ -100,15 +101,14 @@ const About = () => {
               <Card className="h-100 shadow-sm hover-shadow">
                 <Card.Img
                   variant="top"
-                  src="https://via.placeholder.com/400x400?text=Principal"
+                  src={Principal}
                   alt="Jarrid Bartle"
-                  style={{ objectFit: 'cover', height: '400px' }}
                 />
                 <Card.Body>
                   <Card.Title className="text-center fw-bold" style={{ color: '#2b333d' }}>Jarrid Bartle</Card.Title>
                   <p className="text-primary text-center fw-medium mb-2">Principal</p>
                   <p className="text-muted text-center">
-                    Jarrid brings a strong background in inclusive education and leads The Avenue School with a commitment to excellence and empowerment for all students.
+                    “Every student deserves a space where they feel safe, seen and supported; at The Avenue School, we don’t just teach, we empower young people to rediscover their confidence and reimagine their future.”
                   </p>
                 </Card.Body>
               </Card>

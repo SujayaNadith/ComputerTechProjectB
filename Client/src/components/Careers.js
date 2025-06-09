@@ -34,30 +34,9 @@ const Careers = () => {
       <section className="py-5 bg-light">
         <div className="container">
           <h2 className="h4 fw-bold text-brand mb-4">Current Job Openings</h2>
-          <div className="table-responsive">
-            <table className="table table-bordered align-middle text-center">
-              <thead className="table-brand text-white">
-                <tr>
-                  <th>Position</th>
-                  <th>Type</th>
-                  <th>Closing Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Primary School Teacher</td>
-                  <td>Full-Time</td>
-                  <td>31 May 2025</td>
-                </tr>
-                <tr>
-                  <td>School Receptionist</td>
-                  <td>Part-Time</td>
-                  <td>5 June 2025</td>
-                </tr>
-              </tbody>
-            </table>
+          <div className="alert alert-secondary text-center mb-0" role="alert">
+            There are currently no job openings yet. Please check back later.
           </div>
-          <a href="#" className="btn btn-outline-brand mt-3">Download full position descriptions</a>
         </div>
       </section>
 
@@ -77,8 +56,7 @@ const Careers = () => {
               <label htmlFor="position" className="form-label">Position Applying For</label>
               <select id="position" className="form-select" required>
                 <option value="">-- Select a Position --</option>
-                <option value="Primary School Teacher">Primary School Teacher</option>
-                <option value="School Receptionist">School Receptionist</option>
+                <option value="Primary School Teacher">No Job Openings Yet</option>
               </select>
             </div>
             <div className="col-md-6">
@@ -90,16 +68,6 @@ const Careers = () => {
               {submitted && <p className="text-success mt-3 fw-medium">Your application has been submitted!</p>}
             </div>
           </form>
-        </div>
-      </section>
-
-      <section className="py-5 bg-light">
-        <div className="container">
-          <h2 className="h5 fw-bold text-brand mb-3">Staff Testimonial</h2>
-          <blockquote className="blockquote text-muted">
-            “Working at Avenue School is more than a job — it's a community.”<br />
-            <footer className="blockquote-footer mt-2">Sarah, Year 2 Teacher</footer>
-          </blockquote>
         </div>
       </section>
     </div>
