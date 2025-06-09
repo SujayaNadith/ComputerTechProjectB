@@ -14,8 +14,6 @@ import Careers from './components/Careers';
 import AdminDashboard from './components/AdminDashboard';
 import CreateEvent from './components/createEvent';
 
-import PrivateRoute from './utils/PrivateRoute';
-
 import './App.css';
 import './styles/themes.css';
 
@@ -31,10 +29,10 @@ function App() {
         <Route path="/curriculum" element={<Curriculum />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<ContactUs />} />
-        <Route path="/events" element={<PrivateRoute><Events /></PrivateRoute>} />
+        <Route path="/events" element={<Events />} />
         <Route path="/careers" element={<Careers />} />
         <Route path="/documents" element={<Documents />} />
-        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/a7dash87" element={<AdminDashboard />} />
         <Route path="/admin/create-event" element={<CreateEvent />} />
 
       </Routes>
