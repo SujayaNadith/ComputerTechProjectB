@@ -6,13 +6,13 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import About from './components/About';
 import Events from './components/Events';
-import Login from './components/Login';
-import Register from './components/Register';
 import Curriculum from './components/Curriculum';
 import Enrolments from './components/Enrolments';
 import ContactUs from './components/ContactUs';
 import Documents from './components/Documents';
-import Careers from './components/Careers';
+import Careers from './components/Careers'; 
+import AdminDashboard from './components/AdminDashboard';
+import CreateEvent from './components/createEvent';
 
 import PrivateRoute from './utils/PrivateRoute';
 
@@ -32,11 +32,11 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/events" element={<PrivateRoute><Events /></PrivateRoute>} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
         <Route path="/careers" element={<Careers />} />
-
         <Route path="/documents" element={<Documents />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin/create-event" element={<CreateEvent />} />
+
       </Routes>
       </main>
       <Footer />

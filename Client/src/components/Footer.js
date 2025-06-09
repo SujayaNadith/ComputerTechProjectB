@@ -12,7 +12,7 @@ const Footer = () => {
             <h5 className="fw-bold mb-3">Contact Us</h5>
             <p className="mb-2">
               <FaMapMarkerAlt className="me-2 text-primary" />
-              123 Avenue School Road, Melbourne VIC 3000
+              13-15 The Avenue, Ferntree Gully VIC 3155
             </p>
             <p className="mb-2">
               <FaPhone className="me-2 text-primary" />

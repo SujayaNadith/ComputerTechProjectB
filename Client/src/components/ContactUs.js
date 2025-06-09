@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa';
+import axios from 'axios';
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -29,16 +30,22 @@ const ContactUs = () => {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       setSubmitted(false);
     } else {
-      setErrors({});
-      setSubmitted(true);
-      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+      try {
+        await axios.post(`${process.env.REACT_APP_API_URL}/contacts`, formData);
+        setErrors({});
+        setSubmitted(true);
+        setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+      } catch (err) {
+        console.error("📛 Error submitting contact form:", err);
+        alert("Something went wrong. Please try again later.");
+      }
     }
   };
 
@@ -136,7 +143,7 @@ const ContactUs = () => {
                 <div className="card-body d-flex flex-column justify-content-between">
                   <div>
                     <h5 className="mb-3" style={{ color: '#2b333d' }}>School Address</h5>
-                    <p className="mb-1"><FaMapMarkerAlt className="me-2 text-primary" />123 Avenue School Road, Melbourne VIC 3000</p>
+                    <p className="mb-1"><FaMapMarkerAlt className="me-2 text-primary" />13-15 The Avenue, Ferntree Gully VIC 3155</p>
                     <p className="mb-1"><FaPhone className="me-2 text-primary" />+61 3 1234 5678</p>
                     <p className="mb-3"><FaEnvelope className="me-2 text-primary" />info@avenueschool.edu.au</p>
 
@@ -152,10 +159,15 @@ const ContactUs = () => {
                     <h6 className="mb-2" style={{ color: '#2b333d' }}>Location</h6>
                     <div className="ratio ratio-16x9 rounded overflow-hidden">
                       <iframe
-                        src="https://www.google.com/maps?q=Melbourne,+VIC&output=embed"
                         title="School Location"
-                        allowFullScreen
-                      ></iframe>
+                        src="https://www.google.com/maps?q=13-15+The+Avenue,+Ferntree+Gully,+VIC,+Australia&output=embed"
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }}
+                        allowFullScreen=""
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                      />
                     </div>
                   </div>
                 </div>

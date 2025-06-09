@@ -1,24 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import heroImage from '../assets/images/homepage/hero-outdoors.jpg';
 
 const HeroSection = () => {
   return (
     <section
-      className="text-white text-center d-flex align-items-center justify-content-center position-relative fern-bg"
+      className="hero-section d-flex align-items-center"
       style={{
         height: '75vh',
-        backgroundImage: "linear-gradient(rgba(42, 42, 42, 0.6), rgba(42, 42, 42, 0.6)), url('https://via.placeholder.com/1600x500?text=School+Banner')",
+        backgroundImage: `linear-gradient(rgba(255,255,255,0.65), rgba(255,255,255,0.65)), url(${heroImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',
         fontFamily: 'Montserrat, sans-serif'
       }}
     >
-      <div className="container">
+      <div className="container text-center">
         <h1 className="display-4 fw-bold mb-3" style={{ color: '#2b333d' }}>
           Welcome to The Avenue School
         </h1>
-        <p className="lead mx-auto" style={{ maxWidth: '600px', color: '#2b333d' }}>
+        <p className="lead mx-auto" style={{ maxWidth: '700px', color: '#2b333d' }}>
           Inspiring Excellence, Building Futures, and Nurturing Minds in Ferntree Gully
         </p>
         <Link

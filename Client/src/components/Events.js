@@ -1,17 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Card, Button, ButtonGroup } from 'react-bootstrap';
 import { motion, AnimatePresence } from 'framer-motion';
 import moment from 'moment';
+import axios from 'axios';
 
 const Events = () => {
   const [view, setView] = useState('upcoming');
+  const [allEvents, setAllEvents] = useState([]);
 
-  const allEvents = [
-    { id: 1, title: 'Science Fair', date: '2025-05-20', description: 'Student projects showcased.' },
-    { id: 2, title: 'Sports Day', date: '2025-04-01', description: 'Sports & activities.' },
-    { id: 3, title: 'Music Concert', date: '2025-03-15', description: 'Choir & band performances.' },
-    { id: 4, title: 'Book Week', date: '2025-06-10', description: 'Library and reading activities.' },
-  ];
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/events`);
+        setAllEvents(res.data);
+      } catch (err) {
+        console.error("Error fetching events:", err);
+      }
+    };
+
+    fetchEvents();
+  }, []);
 
   const today = moment();
 
@@ -25,12 +33,14 @@ const Events = () => {
 
   const renderEvents = (events) =>
     events.map((event) => (
-      <Card key={event.id} className="mb-3 shadow-sm hover-shadow">
+      <Card key={event._id} className="mb-3 shadow-sm hover-shadow">
         <Card.Body style={{ color: '#2b333d' }}>
           <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center">
             <div className="mb-2 mb-md-0">
               <Card.Title className="fw-bold">{event.title}</Card.Title>
-              <Card.Subtitle className="text-muted mb-2">{moment(event.date).format('MMMM D, YYYY')}</Card.Subtitle>
+              <Card.Subtitle className="text-muted mb-2">
+                {moment(event.date).format('MMMM D, YYYY')}
+              </Card.Subtitle>
               <Card.Text>{event.description}</Card.Text>
             </div>
             <div>
@@ -75,7 +85,9 @@ const Events = () => {
                 exit={{ x: view === 'past' ? -300 : 300, opacity: 0 }}
                 transition={{ duration: 0.4 }}
               >
-                {view === 'upcoming' ? renderEvents(upcomingEvents) : renderEvents(pastEvents)}
+                {view === 'upcoming'
+                  ? renderEvents(upcomingEvents)
+                  : renderEvents(pastEvents)}
               </motion.div>
             </AnimatePresence>
           </div>

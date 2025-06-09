@@ -13,7 +13,7 @@ const Header = () => {
           <img
             src={logo}
             alt="The Avenue School Logo"
-            height="48"
+            height="64"
             className="logo-animated d-inline-block align-middle"
             style={{ borderRadius: '6px' }}
           />
@@ -86,15 +86,6 @@ const Header = () => {
               style={({ isActive }) => ({ color: isActive ? '#2b333d' : '#2b333d' })}
             >
               Careers
-            </NavLink>
-            <NavLink
-              to="/login"
-              className={({ isActive }) =>
-                `nav-link d-flex align-items-center ms-2 ${isActive ? 'active text-primary' : ''}`
-              }
-              style={{ color: '#2b333d' }}
-            >
-              <FaUserCircle size={22} />
             </NavLink>
           </Nav>
         </Navbar.Collapse>

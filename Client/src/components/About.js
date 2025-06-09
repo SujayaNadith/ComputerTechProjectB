@@ -95,10 +95,15 @@ const About = () => {
       <div className="section-stone py-5">
         <Container>
           <h3 className="text-center fw-bold mb-4" style={{ color: '#2b333d' }}>Our Leadership Team</h3>
-          <Row className="g-4">
-            <Col md={6}>
+          <Row className="justify-content-center">
+            <Col md={6} lg={4}>
               <Card className="h-100 shadow-sm hover-shadow">
-                <Card.Img variant="top" src="https://via.placeholder.com/400x400?text=Principal" alt="Principal" />
+                <Card.Img
+                  variant="top"
+                  src="https://via.placeholder.com/400x400?text=Principal"
+                  alt="Jarrid Bartle"
+                  style={{ objectFit: 'cover', height: '400px' }}
+                />
                 <Card.Body>
                   <Card.Title className="text-center fw-bold" style={{ color: '#2b333d' }}>Jarrid Bartle</Card.Title>
                   <p className="text-primary text-center fw-medium mb-2">Principal</p>
@@ -108,22 +113,9 @@ const About = () => {
                 </Card.Body>
               </Card>
             </Col>
-            <Col md={6}>
-              <Card className="h-100 shadow-sm hover-shadow">
-                <Card.Img variant="top" src="https://via.placeholder.com/400x400?text=Vice+Principal" alt="Vice Principal" />
-                <Card.Body>
-                  <Card.Title className="text-center fw-bold" style={{ color: '#2b333d' }}>[Vice Principal Name]</Card.Title>
-                  <p className="text-primary text-center fw-medium mb-2">Vice Principal, Academics</p>
-                  <p className="text-muted text-center">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </p>
-                </Card.Body>
-              </Card>
-            </Col>
           </Row>
         </Container>
       </div>
-
     </div>
   );
 };

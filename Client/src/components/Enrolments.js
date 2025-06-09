@@ -1,17 +1,37 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { Container, Row, Col, Card, Form, Button, Alert, ListGroup } from 'react-bootstrap';
 
 const Enrolments = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    try {
+      await axios.post(`${process.env.REACT_APP_API_URL}/enrolments`, { name, email, message });
+      setSubmitted(true);
+      setName('');
+      setEmail('');
+      setMessage('');
+    } catch (err) {
+      console.error(err);
+      alert('Something went wrong. Please try again later.');
+    }
   };
+
+  const enrolmentDocuments = [
+    { name: 'Information Handbook', file: '/enrolments/Parent and Student Handbook.pdf' },
+    { name: 'Enrolment Policy', file: '/enrolments/Enrolment Policy.pdf' },
+    { name: 'Privacy Collection Statement', file: '/enrolments/Privacy Collection Statement.pdf' },
+    { name: 'Referral Form', file: '/enrolments/Enrolment Referral Form.pdf' },
+    { name: 'Enrolment Agreement', file: '/enrolments/Enrolment Agreement.pdf' }
+  ];
 
   return (
     <div style={{ fontFamily: 'Montserrat, sans-serif' }}>
-      
       <div className="section-pale-sage py-5">
         <Container>
           <h2 className="text-center fw-bold text-primary mb-3 display-5">Enrolments</h2>
@@ -53,20 +73,14 @@ const Enrolments = () => {
                     Enrolment Documents
                   </Card.Title>
                   <ListGroup variant="flush">
-                    {[
-                      "Information Handbook",
-                      "Enrolment Policy",
-                      "Privacy Collection Statement",
-                      "Referral Form",
-                      "Enrolment Agreement"
-                    ].map((doc, index) => (
-                      <ListGroup.Item key={index} action href="#">
-                        {doc}
+                    {enrolmentDocuments.map((doc, index) => (
+                      <ListGroup.Item key={index} action href={doc.file} target="_blank" download>
+                        {doc.name}
                       </ListGroup.Item>
                     ))}
                   </ListGroup>
                   <p className="mt-2 text-muted text-center">
-                    (Links will be connected with backend integration.)
+                    Click a document to download.
                   </p>
                 </Card.Body>
               </Card>
@@ -87,15 +101,34 @@ const Enrolments = () => {
                   <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3">
                       <Form.Label style={{ color: '#2b333d' }}>Name</Form.Label>
-                      <Form.Control type="text" placeholder="Enter your name" required />
+                      <Form.Control
+                        type="text"
+                        placeholder="Enter your name"
+                        required
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                      />
                     </Form.Group>
                     <Form.Group className="mb-3">
                       <Form.Label style={{ color: '#2b333d' }}>Email</Form.Label>
-                      <Form.Control type="email" placeholder="Enter your email" required />
+                      <Form.Control
+                        type="email"
+                        placeholder="Enter your email"
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
                     </Form.Group>
                     <Form.Group className="mb-3">
                       <Form.Label style={{ color: '#2b333d' }}>Message</Form.Label>
-                      <Form.Control as="textarea" rows={4} placeholder="Your message or inquiry" required />
+                      <Form.Control
+                        as="textarea"
+                        rows={4}
+                        placeholder="Your message or inquiry"
+                        required
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                      />
                     </Form.Group>
                     <Button type="submit" variant="primary" className="w-100 fw-semibold text-uppercase">
                       Submit
@@ -112,7 +145,6 @@ const Enrolments = () => {
           </Row>
         </Container>
       </div>
-
     </div>
   );
 };
