@@ -29,7 +29,7 @@ const AdminDashboard = () => {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/admin/login`, {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/a7dash87/login`, {
         password: passwordInput
       });
 
@@ -59,7 +59,7 @@ const AdminDashboard = () => {
         <>
           <div className="d-flex justify-content-between align-items-center mb-4">
             <h2>Admin Dashboard</h2>
-            <Button variant="success" onClick={() => navigate('/admin/create-event')}>
+            <Button variant="success" onClick={() => navigate('/a7dash87/create-event')}>
               + Add New Event
             </Button>
           </div>

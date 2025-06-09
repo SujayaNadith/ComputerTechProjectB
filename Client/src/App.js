@@ -24,6 +24,7 @@ function App() {
       <Header />
       <main style={{flex: 1}}>
       <Routes>
+
         <Route path="/" element={<Home />} />
         <Route path="/enrolments" element={<Enrolments />} />
         <Route path="/curriculum" element={<Curriculum />} />
@@ -33,7 +34,7 @@ function App() {
         <Route path="/careers" element={<Careers />} />
         <Route path="/documents" element={<Documents />} />
         <Route path="/a7dash87" element={<AdminDashboard />} />
-        <Route path="/admin/create-event" element={<CreateEvent />} />
+        <Route path="/a7dash87/create-event" element={<CreateEvent />} />
 
       </Routes>
       </main>
