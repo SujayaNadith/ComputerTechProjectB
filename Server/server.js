@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 5001;
 
 // Middleware
 app.use(cors());
-app.use(express.json()); // Required to parse JSON in POST requests
+app.use(express.json());
 
 // Route imports
 const contactRoutes = require("./routes/contactRoutes");
@@ -32,7 +32,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 app.use("/api/contacts", contactRoutes);
 app.use("/api/enrolments", enrolmentRoutes);
 app.use("/api/events", eventRoutes);
-app.use('/a7dash87', adminRoutes);
+app.use('/api/a7dash87', adminRoutes);
 
 // Default route
 app.get("/", (req, res) => {
