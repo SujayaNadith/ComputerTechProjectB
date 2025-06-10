@@ -32,7 +32,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 app.use("/api/contacts", contactRoutes);
 app.use("/api/enrolments", enrolmentRoutes);
 app.use("/api/events", eventRoutes);
-app.use('/api/admin', adminRoutes);
+app.use('/a7dash87', adminRoutes);
 
 // Default route
 app.get("/", (req, res) => {
