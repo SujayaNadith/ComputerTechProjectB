@@ -35,9 +35,16 @@ const AdminDashboard = () => {
 
       if (res.data.success) {
         setIsAdmin(true);
+      } else {
+        alert('Incorrect password.');
       }
     } catch (err) {
-      alert('Incorrect password.');
+      if (err.response?.status === 401) {
+        alert('Incorrect password.');
+      } else {
+        alert('Something went wrong. Please try again later.');
+        console.error("Login error:", err);
+      }
     }
   };
 
