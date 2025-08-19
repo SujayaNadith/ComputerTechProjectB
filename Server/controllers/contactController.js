@@ -18,7 +18,7 @@ exports.submitContact = async (req, res) => {
     res.status(500).json({ error: "Failed to submit contact message" });
   }
 };
-
+//test
 exports.getAllContacts = async (req, res) => {
   try {
     const contacts = await Contact.find().sort({ createdAt: -1 });
