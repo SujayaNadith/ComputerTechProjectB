@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebookF, FaLinkedin, FaInstagram } from 'react-icons/fa';
 
 const Footer = () => {
   return (
@@ -22,6 +22,18 @@ const Footer = () => {
               <FaEnvelope className="me-2 text-primary" />
               office@theavenueschool.vic.edu.au
             </p>
+            <h6 className="fw-bold mt-3">Follow Us</h6>
+            <div className="d-flex gap-3">
+              <a href="https://www.facebook.com/profile.php?id=61576600509884" target="_blank" rel="noopener noreferrer">
+                <FaFacebookF className="fs-5 text-white" />
+              </a>
+              <a href="https://www.instagram.com/theavenueschool/" target="_blank" rel="noopener noreferrer">
+                <FaInstagram className="fs-5 text-white" />
+              </a>
+              <a href="https://www.linkedin.com/company/105613790/" target="_blank" rel="noopener noreferrer">
+                <FaLinkedin className="fs-5 text-white" />
+              </a>
+            </div>
           </div>
 
           {/* Right Column with Centered Heading and Two Link Columns */}
