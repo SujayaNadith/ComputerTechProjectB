@@ -12,7 +12,7 @@ exports.submitEnrolment = async (req, res) => {
       res.status(500).json({ error: 'Failed to submit enrolment' });
     }
   };
-
+//Test
 exports.deleteEnrolment = async (req, res) => {
   try {
     const deleted = await Enrolment.findByIdAndDelete(req.params.id);
