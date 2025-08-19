@@ -85,9 +85,40 @@ const Events = () => {
                 exit={{ x: view === 'past' ? -300 : 300, opacity: 0 }}
                 transition={{ duration: 0.4 }}
               >
-                {view === 'upcoming'
-                  ? renderEvents(upcomingEvents)
-                  : renderEvents(pastEvents)}
+                {view === 'upcoming' ? (
+                  upcomingEvents.length > 0 ? (
+                    renderEvents(upcomingEvents)
+                  ) : (
+                    <div className="text-center py-5">
+                      <div
+                        style={{
+                          backgroundColor: '#fef9f2',
+                          border: '2px dashed #fcd5ce',
+                          borderRadius: '16px',
+                          padding: '3rem 2rem',
+                          maxWidth: '620px',
+                          margin: '0 auto',
+                          boxShadow: '0 8px 20px rgba(0, 0, 0, 0.05)',
+                        }}
+                      >
+                        <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🌈</div>
+
+                        <h4 style={{ color: '#4d316c', fontWeight: '600', marginBottom: '0.5rem' }}>
+                          You're right on time...
+                        </h4>
+
+                        <p style={{ color: '#555', fontSize: '1.1rem' }}>
+                          Nothing is planned yet.
+                        </p>
+                        <p style={{ color: '#777', fontSize: '1rem' }}>
+                          Check back later. We'll have something wonderful soon.
+                        </p>
+                      </div>
+                    </div>
+                  )
+                ) : (
+                  renderEvents(pastEvents)
+                )}
               </motion.div>
             </AnimatePresence>
           </div>

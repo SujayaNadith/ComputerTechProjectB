@@ -13,6 +13,11 @@ import Documents from './components/Documents';
 import Careers from './components/Careers'; 
 import AdminDashboard from './components/AdminDashboard';
 import CreateEvent from './components/createEvent';
+import AdminInquiries from './components/AdminInquiries';
+import AdminUpdates from './components/AdminUpdates';
+
+import Error404 from './components/Error404';
+import Error403 from './components/Error403';
 
 import './App.css';
 import './styles/themes.css';
@@ -33,8 +38,14 @@ function App() {
         <Route path="/events" element={<Events />} />
         <Route path="/careers" element={<Careers />} />
         <Route path="/documents" element={<Documents />} />
+
         <Route path="/a7dash87" element={<AdminDashboard />} />
         <Route path="/a7dash87/create-event" element={<CreateEvent />} />
+        <Route path="/a7dash87/inquiries" element={<AdminInquiries />} />
+        <Route path="/a7dash87/updates" element={<AdminUpdates />} />
+
+        <Route path='*' element={<Error404 />} />
+        <Route path='/403' element={<Error403 />} />
 
       </Routes>
       </main>
