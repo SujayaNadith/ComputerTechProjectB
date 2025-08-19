@@ -1,25 +1,27 @@
 import React from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import { FaUserCircle } from 'react-icons/fa';
 
-import logo from '../assets/images/Logo.jpg';
+import logo from '../assets/images/logo1.png';
 
 const Header = () => {
   return (
-    <Navbar bg="light" expand="lg" className="shadow-sm" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+    <Navbar
+      bg="light"
+      expand="lg"
+      className="shadow-sm"
+      style={{ fontFamily: 'Montserrat, sans-serif' }}
+    >
       <Container>
-        <Navbar.Brand as={NavLink} to="/" className="d-flex align-items-center gap-3">
+        <Navbar.Brand as={NavLink} to="/" className="d-flex align-items-center">
           <img
             src={logo}
-            alt="The Avenue School Logo"
+            alt="School Logo"
             height="64"
             className="logo-animated d-inline-block align-middle"
             style={{ borderRadius: '6px' }}
           />
-          <span className="fw-bold d-none d-md-inline" style={{ color: '#4d316c', fontFamily: 'Montserrat, sans-serif', fontSize: '1.25rem' }}>
-            The Avenue School
-          </span>
+          {/* Removed "The Avenue School" text */}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
