@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebookF, FaLinkedin} from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebookF, FaLinkedin, FaInstagram} from 'react-icons/fa';
 import axios from 'axios';
 
 const ContactUs = () => {
@@ -150,6 +150,9 @@ const ContactUs = () => {
                     <h6 style={{ color: '#2b333d' }}>Follow Us</h6>
                     <div className="d-flex gap-3">
                       <a href="https://www.facebook.com/profile.php?id=61576600509884"><FaFacebookF className="fs-4 text-primary" /></a>
+                      <a href="https://www.instagram.com/theavenueschool/" target="_blank" rel="noopener noreferrer">
+                        <FaInstagram className="fs-4 text-primary" />
+                      </a>
                       <a href="https://www.linkedin.com/company/105613790/" target="_blank" rel="noopener noreferrer">
                         <FaLinkedin className="fs-4 text-primary" />
                       </a>
