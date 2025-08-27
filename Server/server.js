@@ -68,8 +68,15 @@ app.get("/ready", (_req, res) => {
 });
 
 /* --------------------------------- Routes --------------------------------- */
-// Example: const enrolmentRoutes = require("./routes/enrolmentRoutes");
-// app.use("/api", enrolmentRoutes);
+const adminRoutes = require('./routes/adminRoutes');
+const contactRoutes = require('./routes/contactRoutes');
+const enrolmentRoutes = require('./routes/enrolmentRoutes');
+const eventRoutes = require('./routes/eventRoutes');
+
+app.use('/a7dash87', adminRoutes);
+app.use('/a7dash87', contactRoutes);
+app.use('/a7dash87', enrolmentRoutes);
+app.use('/a7dash87', eventRoutes);
 
 /* --------------------------------- Errors --------------------------------- */
 // 404

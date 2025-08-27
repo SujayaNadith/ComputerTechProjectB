@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Container, Row, Col, Card, Form, Button, Alert, ListGroup } from 'react-bootstrap';
+import { API_BASE } from '../lib/apiBase'; // ← unified env helper
 
 const Enrolments = () => {
   const [name, setName] = useState('');
@@ -11,13 +12,19 @@ const Enrolments = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/enrolments`, { name, email, message });
+      // use API_BASE and new server mount
+      await axios.post(
+        `${API_BASE}/enrolments`,
+        { name, email, message },
+        { withCredentials: true } // in case you later set cookies/sessions
+      );
+
       setSubmitted(true);
       setName('');
       setEmail('');
       setMessage('');
     } catch (err) {
-      console.error(err);
+      console.error('❌ Enrolment submit failed:', err);
       alert('Something went wrong. Please try again later.');
     }
   };

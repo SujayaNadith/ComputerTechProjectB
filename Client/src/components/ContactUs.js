@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebookF, FaLinkedin, FaInstagram} from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebookF, FaLinkedin, FaInstagram } from 'react-icons/fa';
 import axios from 'axios';
+import { API_BASE } from '../lib/apiBase';
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +14,7 @@ const ContactUs = () => {
 
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -36,22 +38,27 @@ const ContactUs = () => {
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       setSubmitted(false);
-    } else {
-      try {
-        await axios.post(`${process.env.REACT_APP_API_URL}/contacts`, formData);
-        setErrors({});
-        setSubmitted(true);
-        setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
-      } catch (err) {
-        console.error("📛 Error submitting contact form:", err);
-        alert("Something went wrong. Please try again later.");
-      }
+      return;
+    }
+
+    try {
+      setSubmitting(true);
+      setErrors({});
+      // Backend mount is /contact (no /api prefix)
+      await axios.post(`${API_BASE}/contact`, formData, { withCredentials: true });
+      setSubmitted(true);
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    } catch (err) {
+      console.error('📛 Error submitting contact form:', err);
+      alert('Something went wrong. Please try again later.');
+      setSubmitted(false);
+    } finally {
+      setSubmitting(false);
     }
   };
 
   return (
     <div style={{ fontFamily: 'Montserrat, sans-serif' }}>
-      
       <div className="section-pale-sage py-5">
         <div className="container">
           <h2 className="text-center fw-bold mb-5" style={{ color: '#2b333d' }}>
@@ -120,12 +127,16 @@ const ContactUs = () => {
                         rows="5"
                         value={formData.message}
                         onChange={handleChange}
-                      ></textarea>
+                      />
                       <div className="invalid-feedback">{errors.message}</div>
                     </div>
 
-                    <button type="submit" className="btn btn-primary w-100 fw-semibold text-uppercase">
-                      Submit
+                    <button
+                      type="submit"
+                      className="btn btn-primary w-100 fw-semibold text-uppercase"
+                      disabled={submitting}
+                    >
+                      {submitting ? 'Submitting…' : 'Submit'}
                     </button>
 
                     {submitted && (
@@ -180,7 +191,6 @@ const ContactUs = () => {
           </div>
         </div>
       </div>      
-
     </div>
   );
 };

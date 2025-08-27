@@ -1,24 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Card, Button, ButtonGroup } from 'react-bootstrap';
+import { Container, Card, Button, ButtonGroup, Spinner, Alert } from 'react-bootstrap';
 import { motion, AnimatePresence } from 'framer-motion';
 import moment from 'moment';
 import axios from 'axios';
+import { API_BASE } from '../lib/apiBase';
 
 const Events = () => {
   const [view, setView] = useState('upcoming');
   const [allEvents, setAllEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [err, setErr] = useState(null);
 
   useEffect(() => {
+    let alive = true;
     const fetchEvents = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/events`);
-        setAllEvents(res.data);
-      } catch (err) {
-        console.error("Error fetching events:", err);
+        setLoading(true);
+        setErr(null);
+        const res = await axios.get(`${API_BASE}/events`, { withCredentials: true });
+        if (!alive) return;
+        setAllEvents(Array.isArray(res.data) ? res.data : []);
+      } catch (e) {
+        if (!alive) return;
+        console.error('Error fetching events:', e);
+        setErr('Unable to load events right now.');
+      } finally {
+        if (alive) setLoading(false);
       }
     };
-
     fetchEvents();
+    return () => { alive = false; };
   }, []);
 
   const today = moment();
@@ -33,7 +44,7 @@ const Events = () => {
 
   const renderEvents = (events) =>
     events.map((event) => (
-      <Card key={event._id} className="mb-3 shadow-sm hover-shadow">
+      <Card key={event._id || `${event.title}-${event.date}`} className="mb-3 shadow-sm hover-shadow">
         <Card.Body style={{ color: '#2b333d' }}>
           <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center">
             <div className="mb-2 mb-md-0">
@@ -52,6 +63,31 @@ const Events = () => {
         </Card.Body>
       </Card>
     ));
+
+  const EmptyUpcoming = () => (
+    <div className="text-center py-5">
+      <div
+        style={{
+          backgroundColor: '#fef9f2',
+          border: '2px dashed #fcd5ce',
+          borderRadius: '16px',
+          padding: '3rem 2rem',
+          maxWidth: '620px',
+          margin: '0 auto',
+          boxShadow: '0 8px 20px rgba(0, 0, 0, 0.05)',
+        }}
+      >
+        <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🌈</div>
+        <h4 style={{ color: '#4d316c', fontWeight: '600', marginBottom: '0.5rem' }}>
+          You're right on time...
+        </h4>
+        <p style={{ color: '#555', fontSize: '1.1rem' }}>Nothing is planned yet.</p>
+        <p style={{ color: '#777', fontSize: '1rem' }}>
+          Check back later. We'll have something wonderful soon.
+        </p>
+      </div>
+    </div>
+  );
 
   return (
     <div style={{ fontFamily: 'Montserrat, sans-serif' }}>
@@ -76,52 +112,35 @@ const Events = () => {
             </Button>
           </ButtonGroup>
 
-          <div style={{ minHeight: '400px' }}>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={view}
-                initial={{ x: view === 'past' ? 300 : -300, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                exit={{ x: view === 'past' ? -300 : 300, opacity: 0 }}
-                transition={{ duration: 0.4 }}
-              >
-                {view === 'upcoming' ? (
-                  upcomingEvents.length > 0 ? (
-                    renderEvents(upcomingEvents)
-                  ) : (
-                    <div className="text-center py-5">
-                      <div
-                        style={{
-                          backgroundColor: '#fef9f2',
-                          border: '2px dashed #fcd5ce',
-                          borderRadius: '16px',
-                          padding: '3rem 2rem',
-                          maxWidth: '620px',
-                          margin: '0 auto',
-                          boxShadow: '0 8px 20px rgba(0, 0, 0, 0.05)',
-                        }}
-                      >
-                        <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🌈</div>
+          {loading && (
+            <div className="d-flex justify-content-center py-5">
+              <Spinner animation="border" role="status" />
+            </div>
+          )}
 
-                        <h4 style={{ color: '#4d316c', fontWeight: '600', marginBottom: '0.5rem' }}>
-                          You're right on time...
-                        </h4>
+          {!loading && err && (
+            <Alert variant="warning" className="text-center">
+              {err}
+            </Alert>
+          )}
 
-                        <p style={{ color: '#555', fontSize: '1.1rem' }}>
-                          Nothing is planned yet.
-                        </p>
-                        <p style={{ color: '#777', fontSize: '1rem' }}>
-                          Check back later. We'll have something wonderful soon.
-                        </p>
-                      </div>
-                    </div>
-                  )
-                ) : (
-                  renderEvents(pastEvents)
-                )}
-              </motion.div>
-            </AnimatePresence>
-          </div>
+          {!loading && !err && (
+            <div style={{ minHeight: '400px' }}>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={view}
+                  initial={{ x: view === 'past' ? 300 : -300, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{ x: view === 'past' ? -300 : 300, opacity: 0 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  {view === 'upcoming'
+                    ? (upcomingEvents.length > 0 ? renderEvents(upcomingEvents) : <EmptyUpcoming />)
+                    : renderEvents(pastEvents)}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          )}
         </Container>
       </div>
     </div>
