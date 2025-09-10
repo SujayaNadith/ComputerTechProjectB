@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Container, Row, Col, Card, Form, Button, Alert, ListGroup } from 'react-bootstrap';
+import { Container, Row, Col, Card, Form, Button, Alert, ListGroup, Modal } from 'react-bootstrap';
 import { API_BASE } from '../lib/apiBase'; // ← unified env helper
 
 const Enrolments = () => {
@@ -36,6 +36,34 @@ const Enrolments = () => {
     { name: 'Referral Form', file: '/enrolments/Enrolment Referral Form.pdf' },
     { name: 'Enrolment Agreement', file: '/enrolments/Enrolment Agreement.pdf' }
   ];
+
+  const [showViewer, setShowViewer] = useState(false);
+  const [activeDoc, setActiveDoc] = useState(null); // { name, file }
+
+  const buildEncodedUrl = (path) => {
+    if (!path) return '';
+    const segments = path.split('/');
+    const filename = segments.pop();
+    const base = segments.join('/') || '';
+    return `${base}/${encodeURIComponent(filename)}`;
+  };
+
+  const handleOpen = async (doc) => {
+    const url = buildEncodedUrl(doc.file);
+    try {
+      const res = await fetch(url, { method: 'HEAD' });
+      if (!res.ok) throw new Error('Not found');
+      setActiveDoc(doc);
+      setShowViewer(true);
+    } catch (e) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+  };
+
+  const handleClose = () => {
+    setShowViewer(false);
+    setTimeout(() => setActiveDoc(null), 150);
+  };
 
   return (
     <div style={{ fontFamily: 'Montserrat, sans-serif' }}>
@@ -80,14 +108,41 @@ const Enrolments = () => {
                     Enrolment Documents
                   </Card.Title>
                   <ListGroup variant="flush">
-                    {enrolmentDocuments.map((doc, index) => (
-                      <ListGroup.Item key={index} action href={doc.file} target="_blank" download>
-                        {doc.name}
-                      </ListGroup.Item>
-                    ))}
+                    {enrolmentDocuments.map((doc, index) => {
+                      const url = buildEncodedUrl(doc.file);
+                      return (
+                        <ListGroup.Item key={index}>
+                          <div className="d-flex flex-column flex-sm-row gap-2 justify-content-between align-items-start align-items-sm-center">
+                            <Button
+                              variant="link"
+                              className="p-0 text-start fw-semibold"
+                              onClick={() => handleOpen(doc)}
+                            >
+                              {doc.name}
+                            </Button>
+                            <div className="d-flex gap-2 w-100 w-sm-auto">
+                              <Button
+                                variant="primary"
+                                className="flex-grow-1 flex-sm-grow-0"
+                                onClick={() => handleOpen(doc)}
+                              >
+                                View
+                              </Button>
+                              <a
+                                className="btn btn-outline-secondary flex-grow-1 flex-sm-grow-0"
+                                href={url}
+                                download
+                              >
+                                Download
+                              </a>
+                            </div>
+                          </div>
+                        </ListGroup.Item>
+                      );
+                    })}
                   </ListGroup>
                   <p className="mt-2 text-muted text-center">
-                    Click a document to download.
+                    Click a document to view or download.
                   </p>
                 </Card.Body>
               </Card>
@@ -152,6 +207,44 @@ const Enrolments = () => {
           </Row>
         </Container>
       </div>
+      <Modal
+        show={showViewer}
+        onHide={handleClose}
+        size="xl"
+        centered
+        fullscreen="md-down"
+        aria-labelledby="enrolment-pdf-viewer-title"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="enrolment-pdf-viewer-title">{activeDoc?.name ?? 'Document'}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{ padding: 0 }}>
+          {activeDoc ? (
+            <iframe
+              title={activeDoc?.name ?? 'PDF'}
+              src={buildEncodedUrl(activeDoc.file)}
+              style={{ width: '100%', height: '80vh', border: 'none' }}
+            />
+          ) : (
+            <div className="p-4">No document selected.</div>
+          )}
+        </Modal.Body>
+        <Modal.Footer className="d-flex flex-column flex-sm-row gap-2 justify-content-between align-items-stretch align-items-sm-center">
+          <small className="text-muted">Use your browser’s PDF toolbar to zoom/print.</small>
+          <div className="d-flex gap-2 w-100 w-sm-auto">
+            {activeDoc && (
+              <>
+                <a className="btn btn-outline-secondary flex-grow-1 flex-sm-grow-0" href={buildEncodedUrl(activeDoc.file)} target="_blank" rel="noopener noreferrer">
+                  Open in new tab
+                </a>
+                <a className="btn btn-primary fw-semibold flex-grow-1 flex-sm-grow-0" href={buildEncodedUrl(activeDoc.file)} download>
+                  Download
+                </a>
+              </>
+            )}
+          </div>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
