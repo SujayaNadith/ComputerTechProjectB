@@ -1,8 +1,26 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import heroImage from '../assets/images/homepage/hero-outdoors.jpg';
+import './HeroSection.css';
 
 const HeroSection = () => {
+  const wrapperRef = useRef(null);
+  const iframeRef = useRef(null);
+
+  const requestFs = (el) => {
+    if (!el) return;
+    const req = el.requestFullscreen || el.webkitRequestFullscreen || el.msRequestFullscreen;
+    if (req) {
+      try { req.call(el); } catch (e) { /* no-op */ }
+    }
+  };
+
+  const openFullscreen = () => {
+    // Prefer fullscreen on the wrapper so we control styling
+    if (wrapperRef.current) return requestFs(wrapperRef.current);
+    if (iframeRef.current) return requestFs(iframeRef.current);
+  };
+
   return (
     <section
       className="hero-section"
@@ -27,12 +45,26 @@ const HeroSection = () => {
 
         {/* 📹 Embedded YouTube Video */}
         <div className="d-flex justify-content-center mb-3">
-          <div className="ratio ratio-16x9" style={{ maxWidth: '560px', width: '100%' }}>
+          <div
+            ref={wrapperRef}
+            className="ratio ratio-16x9 video-thumb"
+            style={{ maxWidth: '560px', width: '100%' }}
+            onClick={openFullscreen}
+            role="button"
+            aria-label="Enlarge video"
+            tabIndex={0}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') openFullscreen(); }}
+          >
             <iframe
-              src="https://www.youtube.com/embed/UDyaAKTPti8"
+              ref={iframeRef}
+              src="https://www.youtube.com/embed/UDyaAKTPti8?controls=1&rel=0&playsinline=1"
               title="Inside Our School"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
             ></iframe>
+            <button className="video-expand-btn" aria-label="Enlarge video" onClick={(e) => { e.stopPropagation(); openFullscreen(); }}>
+              ⤢
+            </button>
           </div>
         </div>
 
