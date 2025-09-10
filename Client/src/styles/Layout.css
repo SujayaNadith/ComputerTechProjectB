@@ -1,0 +1,73 @@
+/* Global Reset & Flexibility */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/*Tablet Styles*/
+
+@media (max-width: 1024px) {
+  body {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  header, nav, footer {
+    padding: 10px;
+    text-align: center;
+  }
+
+  .container {
+    width: 95%;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .grid-2,
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  /* Make images scale properly */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  
+  .main-content, .sidebar {
+    width: 100%;
+    display: block;
+  }
+}
+
+/* Phone Style */
+
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+    padding: 5px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr; 
+  }
+
+  .hero-section h1 {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  button, input, select {
+    width: 100%;
+  }
+}
