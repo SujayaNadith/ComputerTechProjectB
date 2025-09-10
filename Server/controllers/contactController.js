@@ -38,18 +38,19 @@ exports.getAllContacts = async (req, res) => {
 //Controller to delete a specific contact inquiry by its ID.
 exports.deleteContact = async (req, res) => {
   try {
-    // Attempt to find and delete the contact by its ID
-    const deleted = await Contact.findByIdAndDelete(req.params.id);
-    if (!deleted) {
-      // If no contact found with the given ID, respond with 404
-      return res.status(404).json({ error: "Contact not found" });
+    const { id } = req.params;
+    const { Types } = require('mongoose');
+    if (!Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ error: 'Invalid contact id' });
     }
-    // Respond with success message upon successful deletion
-    res.status(200).json({ message: "Contact deleted successfully" });
+    const deleted = await Contact.findByIdAndDelete(id);
+    if (!deleted) {
+      return res.status(404).json({ error: 'Contact not found' });
+    }
+    res.status(200).json({ message: 'Contact deleted successfully' });
   } catch (err) {
-    // Log error and respond with server error
-    console.error("🔥 BACKEND ERROR (deleteContact):", err);
-    res.status(500).json({ error: "Failed to delete contact" });
+    console.error('🔥 BACKEND ERROR (deleteContact):', err);
+    res.status(500).json({ error: 'Failed to delete contact' });
   }
 };
 

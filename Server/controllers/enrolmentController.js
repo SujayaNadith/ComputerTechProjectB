@@ -36,18 +36,19 @@ exports.getAllEnrolments = async (_req, res) => {
 
 exports.deleteEnrolment = async (req, res) => {
   try {
-    // Attempt to find and delete the enrolment by its ID
-    const deleted = await Enrolment.findByIdAndDelete(req.params.id);
-    if (!deleted) {
-      // If no enrolment found with the given ID, respond with 404
-      return res.status(404).json({ error: "Enrolment not found" });
+    const { id } = req.params;
+    const { Types } = require('mongoose');
+    if (!Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ error: 'Invalid enrolment id' });
     }
-    // Respond with success message upon successful deletion
-    res.status(200).json({ message: "Enrolment deleted successfully" });
+    const deleted = await Enrolment.findByIdAndDelete(id);
+    if (!deleted) {
+      return res.status(404).json({ error: 'Enrolment not found' });
+    }
+    return res.status(200).json({ message: 'Enrolment deleted successfully' });
   } catch (err) {
-    // Log error and respond with server error
-    console.error("🔥 BACKEND ERROR (deleteEnrolment):", err);
-    res.status(500).json({ error: "Failed to delete enrolment" });
+    console.error('🔥 BACKEND ERROR (deleteEnrolment):', err);
+    return res.status(500).json({ error: 'Failed to delete enrolment' });
   }
 };
 
