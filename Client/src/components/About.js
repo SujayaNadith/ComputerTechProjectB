@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { FaBullseye, FaEye } from 'react-icons/fa';
 import Principal from '../assets/images/staff/jarrid.jpg';
+import '../styles/about.css';
 
 const About = () => {
   return (
@@ -99,11 +100,14 @@ const About = () => {
           <Row className="justify-content-center">
             <Col md={6} lg={4}>
               <Card className="h-100 shadow-sm hover-shadow">
-                <Card.Img
-                  variant="top"
-                  src={Principal}
-                  alt="Jarrid Bartle"
-                />
+                <div className="crop-bottom-half">
+                  <Card.Img
+                    variant="top"
+                    src={Principal}
+                    alt="Jarrid Bartle"
+                    className="cropped-img"
+                  />
+                </div>
                 <Card.Body>
                   <Card.Title className="text-center fw-bold" style={{ color: '#2b333d' }}>Jarrid Bartle</Card.Title>
                   <p className="text-primary text-center fw-medium mb-2">Principal</p>
