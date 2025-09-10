@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { FiCalendar, FiMail, FiLogOut, FiShield } from 'react-icons/fi';
+import { FiCalendar, FiMail, FiLogOut, FiShield, FiBriefcase } from 'react-icons/fi';
 
 const AdminDashboard = () => {
   const [isAdmin, setIsAdmin] = useState(() => sessionStorage.getItem('isAdmin') === '1');
@@ -123,6 +123,27 @@ const AdminDashboard = () => {
                   <div className="mt-auto d-grid">
                     <Button variant="info" onClick={() => navigate('/a7dash87/inquiries')}>
                       Go to Inquiries
+                    </Button>
+                  </div>
+                </Card.Body>
+              </Card>
+            </Col>
+
+            <Col md={6} lg={4}>
+              <Card className="h-100 shadow-sm border-0">
+                <Card.Body className="p-4 d-flex flex-column">
+                  <div className="d-flex align-items-center mb-3">
+                    <div className="rounded-circle bg-warning-subtle d-flex align-items-center justify-content-center me-3" style={{ width: 48, height: 48 }}>
+                      <FiBriefcase size={22} className="text-warning" />
+                    </div>
+                    <div>
+                      <h5 className="mb-0">Publish Job</h5>
+                      <small className="text-muted">Post a new job opening</small>
+                    </div>
+                  </div>
+                  <div className="mt-auto d-grid">
+                    <Button variant="warning" onClick={() => navigate('/a7dash87/publish-jobs')}>
+                      Open Job Publisher
                     </Button>
                   </div>
                 </Card.Body>

@@ -49,11 +49,6 @@ const HeroSection = () => {
             ref={wrapperRef}
             className="ratio ratio-16x9 video-thumb"
             style={{ maxWidth: '560px', width: '100%' }}
-            onClick={openFullscreen}
-            role="button"
-            aria-label="Enlarge video"
-            tabIndex={0}
-            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') openFullscreen(); }}
           >
             <iframe
               ref={iframeRef}

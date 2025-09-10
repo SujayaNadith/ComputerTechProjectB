@@ -15,6 +15,7 @@ import AdminDashboard from './components/AdminDashboard';
 import CreateEvent from './components/createEvent';
 import AdminInquiries from './components/AdminInquiries';
 import AdminUpdates from './components/AdminUpdates';
+import PublishJobs from './components/publishJobs';
 
 import Error404 from './components/Error404';
 import Error403 from './components/Error403';
@@ -43,6 +44,7 @@ function App() {
         <Route path="/a7dash87/create-event" element={<CreateEvent />} />
         <Route path="/a7dash87/inquiries" element={<AdminInquiries />} />
         <Route path="/a7dash87/updates" element={<AdminUpdates />} />
+        <Route path="/a7dash87/publish-jobs" element={<PublishJobs />} />
 
         <Route path='*' element={<Error404 />} />
         <Route path='/403' element={<Error403 />} />
