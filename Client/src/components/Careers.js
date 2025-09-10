@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/careers.css';
+import CareerInterestForm from './CareerInterestForm';
 
 const Careers = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -42,32 +43,9 @@ const Careers = () => {
 
       <section className="py-5 bg-white">
         <div className="container">
-          <h2 className="h4 fw-bold text-brand mb-4">Apply Now</h2>
-          <form className="row g-3" onSubmit={handleSubmit}>
-            <div className="col-md-6">
-              <label htmlFor="fullname" className="form-label">Full Name</label>
-              <input type="text" className="form-control" id="fullname" required />
-            </div>
-            <div className="col-md-6">
-              <label htmlFor="email" className="form-label">Email</label>
-              <input type="email" className="form-control" id="email" required />
-            </div>
-            <div className="col-md-6">
-              <label htmlFor="position" className="form-label">Position Applying For</label>
-              <select id="position" className="form-select" required>
-                <option value="">-- Select a Position --</option>
-                <option value="Primary School Teacher">No Job Openings Yet</option>
-              </select>
-            </div>
-            <div className="col-md-6">
-              <label htmlFor="resume" className="form-label">Upload Resume (PDF)</label>
-              <input type="file" className="form-control" id="resume" accept=".pdf" required />
-            </div>
-            <div className="col-12">
-              <button type="submit" className="btn btn-brand w-100">Submit Application</button>
-              {submitted && <p className="text-success mt-3 fw-medium">Your application has been submitted!</p>}
-            </div>
-          </form>
+          <h2 className="h4 fw-bold text-brand mb-3">Register Interest to Work</h2>
+          <p className="text-muted mb-4">Not seeing a role yet? Share your details and the positions you’re interested in, and we’ll keep your CV on file.</p>
+          <CareerInterestForm />
         </div>
       </section>
     </div>

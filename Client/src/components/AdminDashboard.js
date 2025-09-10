@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { FiCalendar, FiMail, FiLogOut, FiShield, FiBriefcase } from 'react-icons/fi';
+import { FiCalendar, FiMail, FiLogOut, FiShield, FiBriefcase, FiUserPlus } from 'react-icons/fi';
 
 const AdminDashboard = () => {
   const [isAdmin, setIsAdmin] = useState(() => sessionStorage.getItem('isAdmin') === '1');
@@ -79,7 +79,7 @@ const AdminDashboard = () => {
           <div className="d-flex justify-content-between align-items-center mb-4">
             <div>
               <h2 className="mb-1">Admin Dashboard</h2>
-              <div className="text-muted">Manage events and inquiries</div>
+              <div className="text-muted">Manage events, inquiries, jobs, and interests</div>
             </div>
             <Button variant="outline-secondary" onClick={handleLogout}>
               <FiLogOut className="me-2" /> Logout
@@ -144,6 +144,27 @@ const AdminDashboard = () => {
                   <div className="mt-auto d-grid">
                     <Button variant="warning" onClick={() => navigate('/a7dash87/publish-jobs')}>
                       Open Job Publisher
+                    </Button>
+                  </div>
+                </Card.Body>
+              </Card>
+            </Col>
+
+            <Col md={6} lg={4}>
+              <Card className="h-100 shadow-sm border-0">
+                <Card.Body className="p-4 d-flex flex-column">
+                  <div className="d-flex align-items-center mb-3">
+                    <div className="rounded-circle bg-success-subtle d-flex align-items-center justify-content-center me-3" style={{ width: 48, height: 48 }}>
+                      <FiUserPlus size={22} className="text-success" />
+                    </div>
+                    <div>
+                      <h5 className="mb-0">See interests to work</h5>
+                      <small className="text-muted">Review submitted interests & CVs</small>
+                    </div>
+                  </div>
+                  <div className="mt-auto d-grid">
+                    <Button variant="success" onClick={() => navigate('/a7dash87/interests')}>
+                      View Interests
                     </Button>
                   </div>
                 </Card.Body>

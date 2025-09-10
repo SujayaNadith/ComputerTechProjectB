@@ -20,7 +20,8 @@ const app = express();
 /* ----------------------------- Core middleware ---------------------------- */
 app.use(helmet());              // security headers
 app.use(compression());         // gzip responses
-app.use(express.json({ limit: "1mb" })); // adjust if you accept large payloads
+// Increase JSON limit to handle base64 CV uploads from careers form
+app.use(express.json({ limit: "15mb" }));
 
 // Dev request logging
 if (process.env.NODE_ENV !== "production") {
@@ -75,12 +76,14 @@ const adminRoutes = require('./routes/adminRoutes');
 const contactRoutes = require('./routes/contactRoutes');
 const enrolmentRoutes = require('./routes/enrolmentRoutes');
 const eventRoutes = require('./routes/eventRoutes');
+const interestRoutes = require('./routes/interestRoutes');
 
 // Public API base path to match client REACT_APP_API_URL (e.g., http://localhost:5001/api)
 app.use('/api/admin', adminRoutes);
 app.use('/api/contacts', contactRoutes);
 app.use('/api/enrolments', enrolmentRoutes);
 app.use('/api/events', eventRoutes);
+app.use('/api/interests', interestRoutes);
 
 /* --------------------------------- Errors --------------------------------- */
 // 404
