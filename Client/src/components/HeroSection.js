@@ -47,16 +47,18 @@ const HeroSection = () => {
         <div className="d-flex justify-content-center mb-3">
           <div
             ref={wrapperRef}
-            className="ratio ratio-16x9 video-thumb"
+            className="video-thumb"
             style={{ maxWidth: '560px', width: '100%' }}
           >
-            <iframe
-              ref={iframeRef}
-              src="https://www.youtube.com/embed/UDyaAKTPti8?controls=1&rel=0&playsinline=1"
-              title="Inside Our School"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            ></iframe>
+            <div className="ratio ratio-16x9">
+              <iframe
+                ref={iframeRef}
+                src="https://www.youtube.com/embed/UDyaAKTPti8?controls=1&rel=0&playsinline=1"
+                title="Inside Our School"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              ></iframe>
+            </div>
             <button className="video-expand-btn" aria-label="Enlarge video" onClick={(e) => { e.stopPropagation(); openFullscreen(); }}>
               ⤢
             </button>
