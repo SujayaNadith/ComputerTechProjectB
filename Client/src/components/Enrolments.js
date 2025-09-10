@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Container, Row, Col, Card, Form, Button, Alert, ListGroup, Modal } from 'react-bootstrap';
+import PdfCanvasViewer from './PdfCanvasViewer';
 import { API_BASE } from '../lib/apiBase'; // ← unified env helper
 
 const Enrolments = () => {
@@ -220,11 +221,9 @@ const Enrolments = () => {
         </Modal.Header>
         <Modal.Body style={{ padding: 0 }}>
           {activeDoc ? (
-            <iframe
-              title={activeDoc?.name ?? 'PDF'}
-              src={buildEncodedUrl(activeDoc.file)}
-              style={{ width: '100%', height: '80vh', border: 'none' }}
-            />
+            <div style={{ width: '100%', height: '80vh' }}>
+              <PdfCanvasViewer fileUrl={buildEncodedUrl(activeDoc.file)} />
+            </div>
           ) : (
             <div className="p-4">No document selected.</div>
           )}
