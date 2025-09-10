@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { Container, Button } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { FiCalendar, FiMail, FiLogOut, FiShield } from 'react-icons/fi';
 
 const AdminDashboard = () => {
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(() => sessionStorage.getItem('isAdmin') === '1');
   const [passwordInput, setPasswordInput] = useState('');
   const navigate = useNavigate();
 
@@ -27,42 +28,108 @@ const AdminDashboard = () => {
     }
   };
 
+  useEffect(() => {
+    if (isAdmin) sessionStorage.setItem('isAdmin', '1');
+    else sessionStorage.removeItem('isAdmin');
+  }, [isAdmin]);
+
+  const handleLogout = () => {
+    setIsAdmin(false);
+    setPasswordInput('');
+    navigate('/a7dash87');
+  };
+
   return (
-    <Container className="my-5">
+    <Container className="py-5">
       {!isAdmin ? (
-        <div className="text-center">
-          <h3 className="mb-4">Admin Login</h3>
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              handleLogin();
-            }}
-          >
-            <input
-              type="password"
-              className="form-control mb-3"
-              placeholder="Enter admin password"
-              value={passwordInput}
-              onChange={(e) => setPasswordInput(e.target.value)}
-            />
-            <Button type="submit" variant="primary">Login</Button>
-          </form>
-        </div>
+        <Row className="justify-content-center">
+          <Col md={6} lg={5}>
+            <Card className="shadow-sm border-0">
+              <Card.Body className="p-4">
+                <div className="d-flex align-items-center mb-3">
+                  <FiShield size={28} className="text-primary me-2" />
+                  <h4 className="mb-0">Admin Login</h4>
+                </div>
+                <Form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    handleLogin();
+                  }}
+                >
+                  <Form.Group className="mb-3">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                      type="password"
+                      placeholder="Enter admin password"
+                      value={passwordInput}
+                      onChange={(e) => setPasswordInput(e.target.value)}
+                      required
+                    />
+                  </Form.Group>
+                  <div className="d-grid">
+                    <Button type="submit" variant="primary">Login</Button>
+                  </div>
+                </Form>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
       ) : (
-        <div className="text-center">
-          <h2 className="mb-4">Welcome to the Admin Dashboard</h2>
-          <div className="d-flex justify-content-center gap-3 flex-wrap">
-            <Button variant="success" onClick={() => navigate('/a7dash87/create-event')}>
-              + Create Event
-            </Button>
-            <Button variant="info" onClick={() => navigate('/a7dash87/inquiries')}>
-              📩 View Inquiries
-            </Button>
-            <Button variant="secondary" onClick={() => navigate('/a7dash87/updates')}>
-              🛠 View Updates
+        <>
+          <div className="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <h2 className="mb-1">Admin Dashboard</h2>
+              <div className="text-muted">Manage events and inquiries</div>
+            </div>
+            <Button variant="outline-secondary" onClick={handleLogout}>
+              <FiLogOut className="me-2" /> Logout
             </Button>
           </div>
-        </div>
+
+          <Row className="g-4">
+            <Col md={6} lg={4}>
+              <Card className="h-100 shadow-sm border-0">
+                <Card.Body className="p-4 d-flex flex-column">
+                  <div className="d-flex align-items-center mb-3">
+                    <div className="rounded-circle bg-primary-subtle d-flex align-items-center justify-content-center me-3" style={{ width: 48, height: 48 }}>
+                      <FiCalendar size={22} className="text-primary" />
+                    </div>
+                    <div>
+                      <h5 className="mb-0">Create Event</h5>
+                      <small className="text-muted">Post a new school event</small>
+                    </div>
+                  </div>
+                  <div className="mt-auto d-grid">
+                    <Button variant="primary" onClick={() => navigate('/a7dash87/create-event')}>
+                      Open Event Creator
+                    </Button>
+                  </div>
+                </Card.Body>
+              </Card>
+            </Col>
+
+            <Col md={6} lg={4}>
+              <Card className="h-100 shadow-sm border-0">
+                <Card.Body className="p-4 d-flex flex-column">
+                  <div className="d-flex align-items-center mb-3">
+                    <div className="rounded-circle bg-info-subtle d-flex align-items-center justify-content-center me-3" style={{ width: 48, height: 48 }}>
+                      <FiMail size={22} className="text-info" />
+                    </div>
+                    <div>
+                      <h5 className="mb-0">View Inquiries</h5>
+                      <small className="text-muted">Manage enrolments & messages</small>
+                    </div>
+                  </div>
+                  <div className="mt-auto d-grid">
+                    <Button variant="info" onClick={() => navigate('/a7dash87/inquiries')}>
+                      Go to Inquiries
+                    </Button>
+                  </div>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </>
       )}
     </Container>
   );

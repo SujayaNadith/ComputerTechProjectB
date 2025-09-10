@@ -8,7 +8,18 @@ const contactSchema = new mongoose.Schema({
   email: { type: String, required: true },
   phone: String,
   subject: String,
-  message: { type: String, required: true }
+  message: { type: String, required: true },
+  // Admin workflow fields
+  adminStatus: {
+    type: String,
+    enum: ['new', 'in_progress', 'resolved'],
+    default: 'new',
+  },
+  adminNote: {
+    type: String,
+    default: '',
+    trim: true,
+  }
 }, { 
   timestamps: true 
 });

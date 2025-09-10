@@ -53,3 +53,22 @@ exports.deleteContact = async (req, res) => {
   }
 };
 
+// Update admin status/note for a contact
+exports.updateContactMeta = async (req, res) => {
+  try {
+    const update = {};
+    if (typeof req.body.adminStatus === 'string') update.adminStatus = req.body.adminStatus;
+    if (typeof req.body.adminNote === 'string') update.adminNote = req.body.adminNote;
+
+    const doc = await Contact.findByIdAndUpdate(
+      req.params.id,
+      { $set: update },
+      { new: true, runValidators: true }
+    );
+    if (!doc) return res.status(404).json({ error: 'Contact not found' });
+    res.status(200).json(doc);
+  } catch (err) {
+    console.error('🔥 BACKEND ERROR (updateContactMeta):', err);
+    res.status(500).json({ error: 'Failed to update contact' });
+  }
+};
