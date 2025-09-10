@@ -7,9 +7,12 @@ const compression = require("compression");
 const morgan = require("morgan");
 const rateLimit = require("express-rate-limit");
 
-// Load .env locally only
+// Load .env from this folder when not in production
 if (process.env.NODE_ENV !== "production") {
-  try { require("dotenv").config(); } catch {}
+  try {
+    const path = require("path");
+    require("dotenv").config({ path: path.resolve(__dirname, ".env") });
+  } catch {}
 }
 
 const app = express();
@@ -73,10 +76,11 @@ const contactRoutes = require('./routes/contactRoutes');
 const enrolmentRoutes = require('./routes/enrolmentRoutes');
 const eventRoutes = require('./routes/eventRoutes');
 
-app.use('/a7dash87', adminRoutes);
-app.use('/a7dash87', contactRoutes);
-app.use('/a7dash87', enrolmentRoutes);
-app.use('/a7dash87', eventRoutes);
+// Public API base path to match client REACT_APP_API_URL (e.g., http://localhost:5001/api)
+app.use('/api/admin', adminRoutes);
+app.use('/api/contacts', contactRoutes);
+app.use('/api/enrolments', enrolmentRoutes);
+app.use('/api/events', eventRoutes);
 
 /* --------------------------------- Errors --------------------------------- */
 // 404

@@ -21,6 +21,17 @@ exports.submitEnrolment = async (req, res) => {
     }
   };
 
+// Controller to fetch all enrolment submissions (newest first)
+exports.getAllEnrolments = async (_req, res) => {
+  try {
+    const enrolments = await Enrolment.find().sort({ date: -1 });
+    res.status(200).json(enrolments);
+  } catch (err) {
+    console.error("🔥 BACKEND ERROR (getAllEnrolments):", err);
+    res.status(500).json({ error: "Failed to fetch enrolments" });
+  }
+};
+
 //Controller to delete a specific enrolment by its ID.
 
 exports.deleteEnrolment = async (req, res) => {

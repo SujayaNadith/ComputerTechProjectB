@@ -9,7 +9,7 @@ const AdminDashboard = () => {
 
   const handleLogin = async () => {
     try {
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/a7dash87/login`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/admin/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password: passwordInput })

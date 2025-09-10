@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const Event = require('../models/Event');
+// Use the correct model file name (Events.js exports model 'Event')
+const Event = require('../models/Events');
 
 // GET /events → all events sorted by date ascending
 router.get('/', async (req, res) => {
