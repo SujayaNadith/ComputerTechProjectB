@@ -78,6 +78,7 @@ const contactRoutes = require('./routes/contactRoutes');
 const enrolmentRoutes = require('./routes/enrolmentRoutes');
 const eventRoutes = require('./routes/eventRoutes');
 const interestRoutes = require('./routes/interestRoutes');
+const metaRoutes = require('./routes/metaRoutes');
 
 // Public API base path to match client REACT_APP_API_URL (e.g., http://localhost:5001/api)
 app.use('/api/admin', adminRoutes);
@@ -85,6 +86,7 @@ app.use('/api/contacts', contactRoutes);
 app.use('/api/enrolments', enrolmentRoutes);
 app.use('/api/events', eventRoutes);
 app.use('/api/interests', interestRoutes);
+app.use('/api/meta', metaRoutes);
 
 /* --------------------------------- Errors --------------------------------- */
 // 404
