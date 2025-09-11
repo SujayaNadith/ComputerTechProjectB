@@ -1,5 +1,6 @@
 // Server/server.js
 const express = require("express");
+const path = require("path");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const helmet = require("helmet");
@@ -143,3 +144,5 @@ process.on("SIGTERM", async () => {
   await mongoose.connection.close(false);
   process.exit(0);
 });
+// Serve uploaded files (event images)
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));

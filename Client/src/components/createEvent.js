@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Container, Form, Button, Card, Alert, Row, Col } from 'react-bootstrap';
+import { Container, Form, Button, Card, Alert, Row, Col, Image } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { FiArrowLeft, FiCalendar, FiFileText } from 'react-icons/fi';
+import { FiArrowLeft, FiCalendar, FiFileText, FiImage } from 'react-icons/fi';
+import { API_BASE } from '../lib/apiBase';
+import EventPostPreview from './EventPostPreview';
 
 const CreateEvent = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +15,7 @@ const CreateEvent = () => {
 
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
+  const [files, setFiles] = useState([]); // File[]
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -25,9 +28,16 @@ const CreateEvent = () => {
     setSuccess(false);
 
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/events`, formData);
+      const fd = new FormData();
+      fd.append('title', formData.title);
+      fd.append('date', formData.date);
+      fd.append('description', formData.description);
+      files.forEach(f => fd.append('images', f));
+
+      await axios.post(`${API_BASE}/events`, fd, { headers: { 'Content-Type': 'multipart/form-data' } });
       setSuccess(true);
       setFormData({ title: '', date: '', description: '' });
+      setFiles([]);
     } catch (err) {
       console.error('Error creating event:', err);
       setError('Something went wrong. Please try again.');
@@ -91,6 +101,23 @@ const CreateEvent = () => {
                   />
                 </Form.Group>
 
+                <Form.Group className="mb-4">
+                  <Form.Label className="d-flex align-items-center gap-2">
+                    <FiImage /> Event Images
+                  </Form.Label>
+                  <Form.Control
+                    type="file"
+                    accept="image/png,image/jpeg,image/jpg,image/webp"
+                    multiple
+                    onChange={(e) => setFiles(Array.from(e.target.files || []))}
+                  />
+                  <div className="d-flex flex-wrap gap-2 mt-2">
+                    {files.map((f, i) => (
+                      <Image key={i} src={URL.createObjectURL(f)} alt={`preview-${i}`} thumbnail style={{ width: 96, height: 96, objectFit: 'cover' }} />
+                    ))}
+                  </div>
+                </Form.Group>
+
                 <div className="d-grid">
                   <Button type="submit" variant="success">Submit Event</Button>
                 </div>
@@ -98,15 +125,16 @@ const CreateEvent = () => {
             </Col>
 
             <Col md={5} className="mt-4 mt-md-0">
-              <div className="p-3 border rounded-3 bg-light h-100">
+              <div className="p-2">
                 <h6 className="mb-3 d-flex align-items-center">
                   <FiFileText className="me-2" /> Live Preview
                 </h6>
-                <div>
-                  <div className="fw-bold">{formData.title || 'Event title'}</div>
-                  <div className="text-muted mb-2">{formData.date || 'yyyy-mm-dd'}</div>
-                  <div style={{ whiteSpace: 'pre-wrap' }}>{formData.description || 'Event description...'}</div>
-                </div>
+                <EventPostPreview
+                  title={formData.title}
+                  date={formData.date}
+                  description={formData.description}
+                  files={files}
+                />
               </div>
             </Col>
           </Row>
@@ -117,4 +145,3 @@ const CreateEvent = () => {
 };
 
 export default CreateEvent;
-

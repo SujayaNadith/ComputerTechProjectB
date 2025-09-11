@@ -17,6 +17,10 @@ const eventSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    images: {
+      type: [String], // public URLs served by Express, e.g., /api/uploads/events/xxx.jpg
+      default: [],
+    },
   },
   {
     timestamps: true,      // adds createdAt & updatedAt automatically
