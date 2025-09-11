@@ -53,11 +53,11 @@ const Enrolments = () => {
     try {
       const res = await fetch(url, { method: 'HEAD' });
       if (!res.ok) throw new Error('Not found');
-      setActiveDoc(doc);
-      setShowViewer(true);
     } catch (e) {
-      window.open(url, '_blank', 'noopener,noreferrer');
+      // Even if the HEAD check fails (some hosts don’t support HEAD), still try inline
     }
+    setActiveDoc(doc);
+    setShowViewer(true);
   };
 
   const handleClose = () => {
@@ -212,7 +212,7 @@ const Enrolments = () => {
         onHide={handleClose}
         size="xl"
         centered
-        fullscreen="md-down"
+        dialogClassName="pdf-viewer-modal"
         aria-labelledby="enrolment-pdf-viewer-title"
       >
         <Modal.Header closeButton>
@@ -229,20 +229,15 @@ const Enrolments = () => {
             <div className="p-4">No document selected.</div>
           )}
         </Modal.Body>
-        <Modal.Footer className="d-flex flex-column flex-sm-row gap-2 justify-content-between align-items-stretch align-items-sm-center">
-          <small className="text-muted">Use your browser’s PDF toolbar to zoom/print.</small>
-          <div className="d-flex gap-2 w-100 w-sm-auto">
-            {activeDoc && (
-              <>
-                <a className="btn btn-outline-secondary flex-grow-1 flex-sm-grow-0" href={buildEncodedUrl(activeDoc.file)} target="_blank" rel="noopener noreferrer">
-                  Open in new tab
-                </a>
-                <a className="btn btn-primary fw-semibold flex-grow-1 flex-sm-grow-0" href={buildEncodedUrl(activeDoc.file)} download>
-                  Download
-                </a>
-              </>
-            )}
-          </div>
+        <Modal.Footer className="d-flex justify-content-between">
+          <small className="text-muted">
+            Use your browser’s PDF toolbar to zoom/print. Scroll to read all pages.
+          </small>
+          {activeDoc && (
+            <a className="btn btn-primary fw-semibold" href={buildEncodedUrl(activeDoc.file)} download>
+              Download
+            </a>
+          )}
         </Modal.Footer>
       </Modal>
     </div>
