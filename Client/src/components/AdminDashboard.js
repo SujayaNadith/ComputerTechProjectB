@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { FiCalendar, FiMail, FiLogOut, FiShield, FiBriefcase, FiUserPlus } from 'react-icons/fi';
+import { FiCalendar, FiMail, FiLogOut, FiShield, FiBriefcase, FiUserPlus, FiServer } from 'react-icons/fi';
 
 const AdminDashboard = () => {
   const [isAdmin, setIsAdmin] = useState(() => sessionStorage.getItem('isAdmin') === '1');
@@ -102,6 +102,27 @@ const AdminDashboard = () => {
                   <div className="mt-auto d-grid">
                     <Button variant="primary" onClick={() => navigate('/a7dash87/create-event')}>
                       Open Event Creator
+                    </Button>
+                  </div>
+                </Card.Body>
+              </Card>
+            </Col>
+            
+            <Col md={6} lg={4}>
+              <Card className="h-100 shadow-sm border-0">
+                <Card.Body className="p-4 d-flex flex-column">
+                  <div className="d-flex align-items-center mb-3">
+                    <div className="rounded-circle bg-secondary-subtle d-flex align-items-center justify-content-center me-3" style={{ width: 48, height: 48 }}>
+                      <FiServer size={22} className="text-secondary" />
+                    </div>
+                    <div>
+                      <h5 className="mb-0">Services Used</h5>
+                      <small className="text-muted">Track hosting & tools</small>
+                    </div>
+                  </div>
+                  <div className="mt-auto d-grid">
+                    <Button variant="secondary" onClick={() => navigate('/a7dash87/services-used')}>
+                      View Services
                     </Button>
                   </div>
                 </Card.Body>

@@ -52,6 +52,27 @@
     background-color: var(--stone-beige);
 }
   
+/* When a route-specific background image is active, let sections show it through */
+body.has-route-bg .section-pale-sage {
+    /* rgba(203, 222, 211, 0.55) */
+    background-color: rgba(203, 222, 211, 0.55);
+    /* Add subtle separators to distinguish sections */
+    box-shadow: inset 0 1px rgba(43, 51, 61, 0.08), inset 0 -1px rgba(43, 51, 61, 0.08);
+}
+
+body.has-route-bg .section-stone {
+    /* rgba(226, 223, 218, 0.55) */
+    background-color: rgba(226, 223, 218, 0.55);
+    /* Add subtle separators to distinguish sections */
+    box-shadow: inset 0 1px rgba(43, 51, 61, 0.08), inset 0 -1px rgba(43, 51, 61, 0.08);
+}
+
+/* Optional polish: slightly stronger divider for the very first section under the header */
+body.has-route-bg main > .section-pale-sage:first-of-type,
+body.has-route-bg main > .section-stone:first-of-type {
+    box-shadow: inset 0 2px rgba(43, 51, 61, 0.1), inset 0 -1px rgba(43, 51, 61, 0.08);
+}
+
   
   
   

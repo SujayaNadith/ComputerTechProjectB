@@ -13,8 +13,11 @@ import Documents from './components/Documents';
 import Careers from './components/Careers'; 
 import AdminDashboard from './components/AdminDashboard';
 import CreateEvent from './components/createEvent';
+import EditEvent from './components/editEvent';
 import AdminInquiries from './components/AdminInquiries';
 import AdminUpdates from './components/AdminUpdates';
+import RouteBackground from './components/RouteBackground';
+import ServicesUsed from './components/ServicesUsed';
 import PublishJobs from './components/publishJobs';
 import AdminInterests from './components/AdminInterests';
 
@@ -28,6 +31,7 @@ function App() {
 
   return (
     <Router>
+      <RouteBackground />
       <Header />
       <main style={{flex: 1}}>
       <Routes>
@@ -43,8 +47,10 @@ function App() {
 
         <Route path="/a7dash87" element={<AdminDashboard />} />
         <Route path="/a7dash87/create-event" element={<CreateEvent />} />
+        <Route path="/a7dash87/edit-event/:id" element={<EditEvent />} />
         <Route path="/a7dash87/inquiries" element={<AdminInquiries />} />
         <Route path="/a7dash87/updates" element={<AdminUpdates />} />
+        <Route path="/a7dash87/services-used" element={<ServicesUsed />} />
         <Route path="/a7dash87/publish-jobs" element={<PublishJobs />} />
         <Route path="/a7dash87/interests" element={<AdminInterests />} />
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Card, Button, ButtonGroup, Spinner, Alert } from 'react-bootstrap';
+import { Container, Card, Button, ButtonGroup, Spinner, Alert, Carousel } from 'react-bootstrap';
 import { motion, AnimatePresence } from 'framer-motion';
 import moment from 'moment';
 import axios from 'axios';
@@ -44,22 +44,50 @@ const Events = () => {
 
   const renderEvents = (events) =>
     events.map((event) => (
-      <Card key={event._id || `${event.title}-${event.date}`} className="mb-3 shadow-sm hover-shadow">
-        <Card.Body style={{ color: '#2b333d' }}>
-          <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center">
-            <div className="mb-2 mb-md-0">
-              <Card.Title className="fw-bold">{event.title}</Card.Title>
-              <Card.Subtitle className="text-muted mb-2">
-                {moment(event.date).format('MMMM D, YYYY')}
-              </Card.Subtitle>
-              <Card.Text>{event.description}</Card.Text>
-            </div>
-            <div>
-              <Button variant="primary" size="sm" className="fw-semibold text-uppercase">
-                Read More
-              </Button>
-            </div>
+      <Card key={event._id || `${event.title}-${event.date}`} className="mb-4 shadow-sm border-0" style={{ maxWidth: 720, margin: '0 auto' }}>
+        {/* Header */}
+        <Card.Header className="bg-white border-0 d-flex align-items-center justify-content-between">
+          <div>
+            <div className="fw-bold" style={{ color: '#2b333d' }}>{event.title}</div>
+            <small className="text-muted">{moment(event.date).format('MMM D, YYYY')}</small>
           </div>
+          {/* Admin actions */}
+          {sessionStorage.getItem('isAdmin') === '1' && (
+            <div className="d-flex gap-2">
+              <Button size="sm" variant="outline-secondary" onClick={() => window.location.assign(`/a7dash87/edit-event/${event._id}`)}>Edit</Button>
+              <Button size="sm" variant="outline-danger" onClick={async () => {
+                if (!window.confirm('Delete this event?')) return;
+                try {
+                  await axios.delete(`${API_BASE}/events/${event._id}`);
+                  setAllEvents(prev => prev.filter(e => e._id !== event._id));
+                } catch (e) {
+                  alert('Failed to delete event');
+                }
+              }}>Delete</Button>
+            </div>
+          )}
+        </Card.Header>
+
+        {/* Media */}
+        {Array.isArray(event.images) && event.images.length > 0 && (
+          <Carousel interval={null} indicators={event.images.length > 1}>
+            {event.images.map((url, idx) => (
+              <Carousel.Item key={idx}>
+                <div style={{ width: '100%', paddingTop: '66%', position: 'relative', backgroundColor: '#f5f5f5' }}>
+                  <img
+                    src={url}
+                    alt={`event-${idx}`}
+                    style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                </div>
+              </Carousel.Item>
+            ))}
+          </Carousel>
+        )}
+
+        {/* Caption */}
+        <Card.Body>
+          <Card.Text style={{ color: '#2b333d', whiteSpace: 'pre-wrap' }}>{event.description}</Card.Text>
         </Card.Body>
       </Card>
     ));
