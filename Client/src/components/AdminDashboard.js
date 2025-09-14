@@ -95,13 +95,16 @@ const AdminDashboard = () => {
                       <FiCalendar size={22} className="text-primary" />
                     </div>
                     <div>
-                      <h5 className="mb-0">Create Event</h5>
-                      <small className="text-muted">Post a new school event</small>
+                      <h5 className="mb-0">Event Management</h5>
+                      <small className="text-muted">Create, edit, or delete events</small>
                     </div>
                   </div>
-                  <div className="mt-auto d-grid">
+                  <div className="mt-auto d-grid gap-2">
                     <Button variant="primary" onClick={() => navigate('/a7dash87/create-event')}>
-                      Open Event Creator
+                      Create New Event
+                    </Button>
+                    <Button variant="outline-primary" onClick={() => navigate('/events')}>
+                      Manage Existing Events
                     </Button>
                   </div>
                 </Card.Body>

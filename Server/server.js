@@ -72,6 +72,10 @@ app.get("/ready", (_req, res) => {
   return res.status(503).json({ status: "starting", mongoState: state });
 });
 
+/* --------------------------- Static file serving --------------------------- */
+// Serve uploaded files (event images) - must be before routes
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 /* --------------------------------- Routes --------------------------------- */
 const adminRoutes = require('./routes/adminRoutes');
 const contactRoutes = require('./routes/contactRoutes');
@@ -146,5 +150,3 @@ process.on("SIGTERM", async () => {
   await mongoose.connection.close(false);
   process.exit(0);
 });
-// Serve uploaded files (event images)
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
