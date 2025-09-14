@@ -105,7 +105,7 @@ const Events = () => {
           boxShadow: '0 8px 20px rgba(0, 0, 0, 0.05)',
         }}
       >
-        <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🌈</div>
+        <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>📅</div>
         <h4 style={{ color: '#4d316c', fontWeight: '600', marginBottom: '0.5rem' }}>
           You're right on time...
         </h4>
