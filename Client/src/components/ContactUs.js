@@ -3,7 +3,13 @@ import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebookF, FaLinkedin, FaInstagr
 import axios from 'axios';
 import { API_BASE } from '../lib/apiBase';
 
+/**
+ * ContactUs captures general enquiries and renders key school contact details.
+ * The component performs light client-side validation before POSTing to the API
+ * and only toggles success feedback when the request completes without error.
+ */
 const ContactUs = () => {
+  // Single state object keeps all form fields in sync with inputs
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -20,6 +26,7 @@ const ContactUs = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Mirror the backend's basic field requirements so users get faster feedback
   const validate = () => {
     const newErrors = {};
     if (!formData.name.trim()) newErrors.name = 'Name is required';
@@ -59,6 +66,7 @@ const ContactUs = () => {
 
   return (
     <div style={{ fontFamily: 'Montserrat, sans-serif' }}>
+      {/* Contact form and side-by-side contact details */}
       <div className="section-pale-sage py-5">
         <div className="container">
           <h2 className="text-center fw-bold mb-5" style={{ color: '#2b333d' }}>

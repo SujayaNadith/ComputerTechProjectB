@@ -4,10 +4,14 @@ import { FaBullseye, FaEye } from 'react-icons/fa';
 import Principal from '../assets/images/staff/jarrid.jpg';
 import '../styles/about.css';
 
+/**
+ * About shares the school's mission, values, and leadership profile, blending
+ * Bootstrap cards with brand styling pulled in from the dedicated stylesheet.
+ */
 const About = () => {
   return (
     <div style={{ fontFamily: 'Montserrat, sans-serif' }}>
-      
+      {/* Mission and vision cards */}
       <div className="section-pale-sage py-5">
         <Container>
           <h2 className="text-center fw-bold mb-3 display-5" style={{ color: '#2b333d' }}>
@@ -53,6 +57,7 @@ const About = () => {
         </Container>
       </div>
 
+      {/* Core values list */}
       <div className="section-stone py-5">
         <Container>
           <h3 className="text-center fw-bold mb-4" style={{ color: '#4d316c' }}>Our Values</h3>
@@ -68,6 +73,7 @@ const About = () => {
         </Container>
       </div>
 
+      {/* Philosophy bullets reinforce the school's ethos */}
       <div className="section-pale-sage py-5">
         <Container>
           <h3 className="text-center fw-bold mb-4" style={{ color: '#1a351a' }}>Our Philosophy</h3>
@@ -94,6 +100,7 @@ const About = () => {
         </Container>
       </div>
 
+      {/* Leadership profile */}
       <div className="section-stone py-5">
         <Container>
           <h3 className="text-center fw-bold mb-4" style={{ color: '#2b333d' }}>Our Leadership Team</h3>

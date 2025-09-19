@@ -4,6 +4,11 @@ import { NavLink } from 'react-router-dom';
 
 import logo from '../assets/images/logo1.png';
 
+/**
+ * Header renders the persistent navigation bar, relying on React Router's
+ * NavLink to highlight the active route while keeping styling consistent with
+ * the Montserrat-focused brand palette.
+ */
 const Header = () => {
   return (
     <Navbar
@@ -26,6 +31,7 @@ const Header = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto align-items-center">
+            {/* Update route list if new sections are added */}
             <NavLink
               to="/"
               className={({ isActive }) =>

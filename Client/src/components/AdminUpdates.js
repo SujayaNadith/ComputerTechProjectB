@@ -7,9 +7,14 @@ const updates = [
   { version: 'v1.0.0', date: '14 June 2025', details: 'Initial website deployment with public pages and contact forms.' },
 ];
 
+/**
+ * AdminUpdates is a simple change log so future maintainers can see when major
+ * features landed without leaving the dashboard.
+ */
 const AdminUpdates = () => {
   return (
     <Container className="my-5">
+      {/* Simple list keeps a lightweight change history */}
       <h3 className="mb-4">Website Update Log</h3>
       <ListGroup>
         {updates.map((log, idx) => (

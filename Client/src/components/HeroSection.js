@@ -3,10 +3,15 @@ import { Link } from 'react-router-dom';
 import heroImage from '../assets/images/homepage/hero-outdoors.jpg';
 import './HeroSection.css';
 
+/**
+ * HeroSection pairs a branded backdrop with an embedded YouTube tour. A custom
+ * fullscreen helper keeps the experience consistent across browsers.
+ */
 const HeroSection = () => {
   const wrapperRef = useRef(null);
   const iframeRef = useRef(null);
 
+  // Cross-browser fullscreen helper
   const requestFs = (el) => {
     if (!el) return;
     const req = el.requestFullscreen || el.webkitRequestFullscreen || el.msRequestFullscreen;

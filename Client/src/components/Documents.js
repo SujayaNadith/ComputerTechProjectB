@@ -31,6 +31,11 @@ const documentList = [
   { title: "Privacy", file: "Privacy.pdf" }
 ];
 
+/**
+ * Documents lists policy PDFs shipped via the public folder. Users can view
+ * files inline or download them, while a defensive HEAD check prevents blank
+ * iframes when an asset is missing.
+ */
 const Documents = () => {
   const [showViewer, setShowViewer] = useState(false);
   const [activeDoc, setActiveDoc] = useState(null); // { title, file }
@@ -129,9 +134,7 @@ const Documents = () => {
             )}
           </Modal.Body>
 
-          <Modal.Footer
-            er className="d-flex justify-content-between"
-          >
+          <Modal.Footer className="d-flex justify-content-between">
             <small className="text-muted">
               Use your browser’s PDF toolbar to zoom/print. Scroll to read all pages.
             </small>

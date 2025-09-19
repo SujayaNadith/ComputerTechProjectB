@@ -2,6 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebookF, FaLinkedin, FaInstagram } from 'react-icons/fa';
 
+/**
+ * Footer repeats contact details, social links, and key navigation paths so
+ * visitors can reach important information without scrolling back to the top.
+ */
 const Footer = () => {
   return (
     <footer className="bg-dark text-white mt-auto pt-5" style={{ fontFamily: 'Montserrat, sans-serif' }}>

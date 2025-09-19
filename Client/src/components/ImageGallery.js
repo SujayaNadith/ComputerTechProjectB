@@ -12,6 +12,10 @@ const galleryImages = [
 
 const loopedImages = [...galleryImages, ...galleryImages];
 
+/**
+ * ImageGallery displays a looping, scrollable set of campus images. The array
+ * is duplicated so users see a seamless stream when swiping on touch devices.
+ */
 const ImageGallery = () => {
   return (
     <section
@@ -30,6 +34,7 @@ const ImageGallery = () => {
             style={{
               height: '250px',
               width: '350px',
+              // Images live in Client/src/assets/images/homepage
               backgroundImage: `url(${require(`../assets/images/homepage/${img.filename}`)})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',

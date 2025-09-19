@@ -3,6 +3,11 @@ import axios from 'axios';
 
 const API_BASE = process.env.REACT_APP_API_URL || '/api';
 
+/**
+ * CareerInterestForm collects optional title information, preferred roles, and
+ * a CV upload which is converted to base64 so it can be persisted as binary in
+ * MongoDB via the interests API.
+ */
 function CareerInterestForm() {
   const [title, setTitle] = useState('');
   const [customTitle, setCustomTitle] = useState('');
@@ -18,6 +23,7 @@ function CareerInterestForm() {
 
   const predefinedTitles = ['Mr', 'Mrs', 'Ms', 'Dr', 'Prof', 'Other'];
 
+  // Maintain a simple deduplicated array for positions of interest
   const addPosition = () => {
     const v = positionInput.trim();
     if (!v) return;
@@ -29,6 +35,7 @@ function CareerInterestForm() {
     setPositions(positions.filter(x => x !== p));
   };
 
+  // Convert file uploads to data URLs before sending to the backend
   const readFileAsBase64 = (file) => new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = () => resolve(reader.result);
@@ -209,4 +216,3 @@ function CareerInterestForm() {
 }
 
 export default CareerInterestForm;
-

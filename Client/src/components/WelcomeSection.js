@@ -2,6 +2,10 @@ import React from 'react';
 import { FaSchool } from 'react-icons/fa';
 import welcomeBg from '../assets/images/homepage/welcome-space.jpg'; 
 
+/**
+ * WelcomeSection reiterates the school's ethos and embeds the acknowledgement
+ * of country within a branded, image-backed panel.
+ */
 const WelcomeSection = () => {
   return (
     <section

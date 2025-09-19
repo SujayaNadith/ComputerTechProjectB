@@ -1,6 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+/**
+ * Error403 shows when a user fails the lightweight admin password gate and
+ * gives them an easy route back to the public site.
+ */
 const Error403 = () => {
   return (
     <div className="text-center py-5" style={{ fontFamily: 'Montserrat, sans-serif' }}>

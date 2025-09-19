@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import '../styles/careers.css';
 import CareerInterestForm from './CareerInterestForm';
 
+/**
+ * Careers landing page outlines perks, current vacancies (if any), and embeds
+ * the interest registration form so prospective staff can lodge their details.
+ */
 const Careers = () => {
-  const [submitted, setSubmitted] = useState(false);
+  const [submitted, setSubmitted] = useState(false); // placeholder for potential form reuse
 
   const handleSubmit = (e) => {
     e.preventDefault();

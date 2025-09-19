@@ -2,10 +2,15 @@ import React from 'react';
 import { Container, Row, Col, Card, Accordion } from 'react-bootstrap';
 import { FaGraduationCap, FaRoute } from 'react-icons/fa';
 
+/**
+ * Curriculum outlines the school's learning pathways and presents FAQs so
+ * prospective students can understand the Victorian Pathways Certificate.
+ */
 function Curriculum() {
   return (
     <div style={{ fontFamily: 'Montserrat, sans-serif' }}>
-      
+
+      {/* Overview and key pathways */}
       <div className="section-pale-sage py-5">
         <Container>
           <h2 className="text-center mb-4 fw-bold display-5" style={{ color: '#2b333d' }}>
@@ -54,6 +59,7 @@ function Curriculum() {
         </Container>
       </div>
 
+      {/* FAQ clarifies the certification */}
       <div className="section-stone py-5">
         <Container>
           <div className="card p-4 border-0 shadow-sm bg-white">

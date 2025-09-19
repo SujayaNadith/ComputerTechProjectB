@@ -3,9 +3,14 @@ import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { FiCalendar, FiMail, FiLogOut, FiShield, FiBriefcase, FiUserPlus, FiServer } from 'react-icons/fi';
 
+/**
+ * AdminDashboard acts as the entry checkpoint for privileged features.
+ * A successful password check persists a sessionStorage flag so child pages
+ * can trust the same browser session without implementing full auth yet.
+ */
 const AdminDashboard = () => {
   const [isAdmin, setIsAdmin] = useState(() => sessionStorage.getItem('isAdmin') === '1');
-  const [passwordInput, setPasswordInput] = useState('');
+  const [passwordInput, setPasswordInput] = useState(''); // plain text for now
   const navigate = useNavigate();
 
   const handleLogin = async () => {

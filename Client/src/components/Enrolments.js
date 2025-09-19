@@ -4,7 +4,15 @@ import { Container, Row, Col, Card, Form, Button, Alert, ListGroup, Modal } from
 import PdfCanvasViewer from './PdfCanvasViewer';
 import { API_BASE } from '../lib/apiBase'; // ← unified env helper
 
+/**
+ * Enrolments screen surfaces eligibility details, downloadable paperwork,
+ * and a lightweight enquiry form that posts directly to the backend API.
+ * The viewer modal allows documents stored in /public/enrolments to open inline
+ * without leaving the page.
+ */
+
 const Enrolments = () => {
+  // Local form state mirrors the three fields required by the backend schema
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -41,6 +49,7 @@ const Enrolments = () => {
   const [showViewer, setShowViewer] = useState(false);
   const [activeDoc, setActiveDoc] = useState(null); // { name, file }
 
+  // Document filenames contain spaces, so always URL-encode the tail segment
   const buildEncodedUrl = (path) => {
     if (!path) return '';
     const segments = path.split('/');
@@ -49,6 +58,7 @@ const Enrolments = () => {
     return `${base}/${encodeURIComponent(filename)}`;
   };
 
+  // HEAD request verifies the asset exists before opening the preview modal
   const handleOpen = async (doc) => {
     const url = buildEncodedUrl(doc.file);
     try {
@@ -68,6 +78,7 @@ const Enrolments = () => {
 
   return (
     <div style={{ fontFamily: 'Montserrat, sans-serif' }}>
+      {/* Eligibility overview and document list */}
       <div className="section-pale-sage py-5">
         <Container>
           <h2 className="text-center fw-bold text-primary mb-3 display-5">Enrolments</h2>
@@ -152,6 +163,7 @@ const Enrolments = () => {
         </Container>
       </div>
 
+      {/* Enquiry form doubles as quick contact for admissions */}
       <div className="section-stone py-5">
         <Container>
           <Row className="justify-content-center">
@@ -208,6 +220,7 @@ const Enrolments = () => {
           </Row>
         </Container>
       </div>
+      {/* PDF viewer modal keeps users on-page while reading documents */}
       <Modal
         show={showViewer}
         onHide={handleClose}

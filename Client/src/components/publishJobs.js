@@ -3,6 +3,11 @@ import { Container, Form, Button, Card, Alert, Row, Col, InputGroup } from 'reac
 import { useNavigate } from 'react-router-dom';
 import { FiArrowLeft, FiBriefcase, FiFileText } from 'react-icons/fi';
 
+/**
+ * PublishJobs is a scaffolded form for future job postings; for now it validates
+ * input locally and surfaces a preview, saving the final API integration for a
+ * later sprint.
+ */
 const PublishJobs = () => {
   const [formData, setFormData] = useState({
     title: '',
@@ -38,6 +43,7 @@ const PublishJobs = () => {
   };
 
   const parsed = useMemo(() => {
+    // Convert newline-delimited text areas into arrays for preview lists
     const toList = (s) => (s || '')
       .split(/\r?\n/)
       .map((l) => l.trim())
@@ -452,4 +458,3 @@ const PublishJobs = () => {
 };
 
 export default PublishJobs;
-

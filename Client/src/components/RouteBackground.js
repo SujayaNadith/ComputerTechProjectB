@@ -12,6 +12,10 @@ const bgMap = [
   { test: (p) => p.startsWith('/documents'), file: 'gallery-7.jpg' },
 ];
 
+/**
+ * RouteBackground conditionally applies themed imagery behind certain routes
+ * by toggling a body class and injecting a fixed-position backdrop element.
+ */
 const RouteBackground = () => {
   const { pathname } = useLocation();
 

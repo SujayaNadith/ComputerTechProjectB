@@ -1,6 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+/**
+ * Error404 provides a minimal, on-brand not-found message with a quick path
+ * back to the home page.
+ */
 const Error404 = () => {
   return (
     <div className="text-center py-5" style={{ fontFamily: 'Montserrat, sans-serif' }}>

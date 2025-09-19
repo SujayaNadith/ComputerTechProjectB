@@ -1,14 +1,19 @@
-// AdminInterests.js needs proofreading
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const API_BASE = process.env.REACT_APP_API_URL || '/api';
+
+/**
+ * AdminInterests surfaces CV submissions captured from the public careers form
+ * and provides quick actions to download attachments or remove outdated entries.
+ */
 
 function AdminInterests() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Pull latest interest submissions from the API
   const load = async () => {
     try {
       setLoading(true);
@@ -24,6 +29,7 @@ function AdminInterests() {
 
   useEffect(() => { load(); }, []);
 
+  // Files are served by the backend; open in a new tab to preserve context
   const downloadCv = (id) => {
     window.open(`${API_BASE}/interests/${id}/cv`, '_blank');
   };
@@ -47,6 +53,7 @@ function AdminInterests() {
       {items.length === 0 ? (
         <div className="alert alert-info">No interests yet.</div>
       ) : (
+        // Responsive table keeps admin tools usable on smaller screens
         <div className="table-responsive">
           <table className="table table-striped align-middle">
             <thead>
@@ -89,4 +96,3 @@ function AdminInterests() {
 }
 
 export default AdminInterests;
-

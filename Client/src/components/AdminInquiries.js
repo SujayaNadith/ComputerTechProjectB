@@ -4,6 +4,10 @@ import { Container, Table, Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 
+/**
+ * AdminInquiries aggregates enrolment form submissions and general contact
+ * messages to let staff triage, annotate, or delete entries from a single view.
+ */
 const AdminInquiries = () => {
   const [contacts, setContacts] = useState([]);
   const [enrolments, setEnrolments] = useState([]);
@@ -11,6 +15,7 @@ const AdminInquiries = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Load both collections concurrently so the tables hydrate together
     const fetchData = async () => {
       try {
         const [contactsRes, enrolmentsRes] = await Promise.all([

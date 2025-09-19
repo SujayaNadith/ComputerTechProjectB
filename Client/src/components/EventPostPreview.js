@@ -4,7 +4,12 @@ import moment from 'moment';
 
 // Events-only live preview that mirrors the feed card layout.
 // Accepts File[] via `files` and optional url[] via `imageUrls`.
+/**
+ * EventPostPreview centralises the card markup so create/edit flows can share
+ * identical formatting without duplicating layout logic.
+ */
 const EventPostPreview = ({ title, date, description, files = [], imageUrls = [] }) => {
+  // Combine File previews with existing hosted URLs for carousels
   const urls = useMemo(() => {
     const localUrls = (files || []).map(f => URL.createObjectURL(f));
     return [...localUrls, ...(imageUrls || [])];
@@ -43,4 +48,3 @@ const EventPostPreview = ({ title, date, description, files = [], imageUrls = []
 };
 
 export default EventPostPreview;
-

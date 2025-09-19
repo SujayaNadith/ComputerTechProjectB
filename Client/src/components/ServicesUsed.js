@@ -9,6 +9,11 @@ const ExternalLink = ({ href, children }) => (
   </a>
 );
 
+/**
+ * ServicesUsed gives administrators a quick reference of hosting providers and
+ * fetches dependency manifests from the backend so ops teams can see deployed
+ * package versions without shell access.
+ */
 const ServicesUsed = () => {
   const [deps, setDeps] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -19,6 +24,7 @@ const ServicesUsed = () => {
   const candidates = [primary, '/api'].filter(Boolean);
 
   useEffect(() => {
+    // Try multiple base URLs in case the dashboard is loaded from a different host
     let alive = true;
     (async () => {
       try {
